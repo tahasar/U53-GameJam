@@ -1,9 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerController : MonoBehaviour
 {
+    public UnityEngine.Animations.Rigging.Rig handIK;
+
+    public Transform weaponParent;
+    public Transform weaponLeftGrip;
+    public Transform weaponRightGrip;
+
+    public Animator rigController;
+
     [SerializeField] public float playerSpeed = 10f;
     Vector3 moveVector;
     CharacterController characterControl;
@@ -29,7 +39,7 @@ public class PlayerController : MonoBehaviour
         characterControl.Move(moveVector * playerSpeed * Time.deltaTime);
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-     
+
 
         if (isGrounded && velocity.y < 0)
         {
@@ -45,6 +55,20 @@ public class PlayerController : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
+
+    }
+
+    [ContextMenu("Save Weapon Pose")]
+    public void SaveWeaponPose()
+    {
+        GameObjectRecorder recorder = new GameObjectRecorder(gameObject);
+        recorder.BindComponentsOfType<Transform>(weaponParent.gameObject, false);
+        recorder.BindComponentsOfType<Transform>(weaponLeftGrip.gameObject, false);
+        recorder.BindComponentsOfType<Transform>(weaponRightGrip.gameObject, false);
+        recorder.BindComponentsOfType<Transform>(gameObject, false);
+        UnityEditor.AssetDatabase.SaveAssets();
+        recorder.TakeSnapshot(0.0f);
+        
 
     }
 }
