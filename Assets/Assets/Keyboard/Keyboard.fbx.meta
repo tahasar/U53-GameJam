@@ -1,0 +1,641 @@
+fileFormatVersion: 2
+guid: 56519e280dc49144f996101d688428c8
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 2
+    materialSearch: 2
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: Keyboard(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: kBase
+      parentName: Keyboard(Clone)
+      position: {x: -0, y: 0.0011069991, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: kKeyEscape
+      parentName: Keyboard(Clone)
+      position: {x: 0.0071607665, y: 0.0025615536, z: 0.02292607}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyTab
+      parentName: Keyboard(Clone)
+      position: {x: 0.00073015504, y: 0.0025615536, z: 0.022277214}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyCap
+      parentName: Keyboard(Clone)
+      position: {x: -0.002096444, y: 0.0025615536, z: 0.02210758}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyShift
+      parentName: Keyboard(Clone)
+      position: {x: -0.005086444, y: 0.0025615536, z: 0.021674879}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeySpace
+      parentName: Keyboard(Clone)
+      position: {x: -0.008068595, y: 0.0025615536, z: 0.005926616}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeySquare
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035157448, y: 0.0025615536, z: 0.02292607}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyCTRLLeft
+      parentName: Keyboard(Clone)
+      position: {x: -0.0080699995, y: 0.0025615536, z: 0.02292607}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyWindows
+      parentName: Keyboard(Clone)
+      position: {x: -0.0080699995, y: 0.0025615536, z: 0.02008776}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyATLLeft
+      parentName: Keyboard(Clone)
+      position: {x: -0.0080699995, y: 0.0025615536, z: 0.017253032}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyZ
+      parentName: Keyboard(Clone)
+      position: {x: -0.00509, y: 0.0025615536, z: 0.01754667}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyX
+      parentName: Keyboard(Clone)
+      position: {x: -0.00509, y: 0.0025615536, z: 0.01468292}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyC
+      parentName: Keyboard(Clone)
+      position: {x: -0.00509, y: 0.0025615536, z: 0.011803922}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyV
+      parentName: Keyboard(Clone)
+      position: {x: -0.00509, y: 0.0025615536, z: 0.008929043}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyB
+      parentName: Keyboard(Clone)
+      position: {x: -0.00509, y: 0.0025615536, z: 0.0060421354}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyN
+      parentName: Keyboard(Clone)
+      position: {x: -0.00509, y: 0.0025615536, z: 0.0031614574}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyM
+      parentName: Keyboard(Clone)
+      position: {x: -0.00509, y: 0.0025615536, z: 0.0002929483}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyLower
+      parentName: Keyboard(Clone)
+      position: {x: -0.00509, y: 0.0025615536, z: -0.0026194144}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeySuperior
+      parentName: Keyboard(Clone)
+      position: {x: -0.00509, y: 0.0025615536, z: -0.005518614}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyHuh
+      parentName: Keyboard(Clone)
+      position: {x: -0.00509, y: 0.0025615536, z: -0.008376631}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyATLGR
+      parentName: Keyboard(Clone)
+      position: {x: -0.0080699995, y: 0.0025615536, z: -0.0056142104}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyA
+      parentName: Keyboard(Clone)
+      position: {x: -0.0021, y: 0.0025615536, z: 0.018409321}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyS
+      parentName: Keyboard(Clone)
+      position: {x: -0.0021, y: 0.0025615536, z: 0.01554557}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyD
+      parentName: Keyboard(Clone)
+      position: {x: -0.0021, y: 0.0025615536, z: 0.012666572}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyF
+      parentName: Keyboard(Clone)
+      position: {x: -0.0021, y: 0.0025615536, z: 0.009791693}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyG
+      parentName: Keyboard(Clone)
+      position: {x: -0.0021, y: 0.0025615536, z: 0.0069047855}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyH
+      parentName: Keyboard(Clone)
+      position: {x: -0.0021, y: 0.0025615536, z: 0.0040241075}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyJ
+      parentName: Keyboard(Clone)
+      position: {x: -0.0021, y: 0.0025615536, z: 0.0011555986}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyK
+      parentName: Keyboard(Clone)
+      position: {x: -0.0021, y: 0.0025615536, z: -0.0017567641}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyL
+      parentName: Keyboard(Clone)
+      position: {x: -0.0021, y: 0.0025615536, z: -0.0046559633}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyTwoPoints
+      parentName: Keyboard(Clone)
+      position: {x: -0.0021, y: 0.0025615536, z: -0.007513981}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyQuotationMark
+      parentName: Keyboard(Clone)
+      position: {x: -0.0021, y: 0.0025615536, z: -0.010429814}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyQ
+      parentName: Keyboard(Clone)
+      position: {x: 0.00072999997, y: 0.0025615536, z: 0.019313734}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyW
+      parentName: Keyboard(Clone)
+      position: {x: 0.00072999997, y: 0.0025615536, z: 0.016439918}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyE
+      parentName: Keyboard(Clone)
+      position: {x: 0.00072999997, y: 0.0025615536, z: 0.01358539}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyR
+      parentName: Keyboard(Clone)
+      position: {x: 0.00072999997, y: 0.0025615536, z: 0.010713477}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyT
+      parentName: Keyboard(Clone)
+      position: {x: 0.00072999997, y: 0.0025615536, z: 0.007841063}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyY
+      parentName: Keyboard(Clone)
+      position: {x: 0.00072999997, y: 0.0025615536, z: 0.004962922}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyU
+      parentName: Keyboard(Clone)
+      position: {x: 0.00072999997, y: 0.0025615536, z: 0.0021187044}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyI
+      parentName: Keyboard(Clone)
+      position: {x: 0.00072999997, y: 0.0025615536, z: -0.0007118883}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyO
+      parentName: Keyboard(Clone)
+      position: {x: 0.00072999997, y: 0.0025615536, z: -0.003475217}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyP
+      parentName: Keyboard(Clone)
+      position: {x: 0.00072999997, y: 0.0025615536, z: -0.0062655616}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyHookLeft
+      parentName: Keyboard(Clone)
+      position: {x: 0.00072999997, y: 0.0025615536, z: -0.009070907}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKey1
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035199998, y: 0.0025615536, z: 0.02011451}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKey2
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035199998, y: 0.0025615536, z: 0.017287174}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKey3
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035199998, y: 0.0025615536, z: 0.014462387}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKey4
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035199998, y: 0.0025615536, z: 0.011623937}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKey5
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035199998, y: 0.0025615536, z: 0.008755313}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKey6
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035199998, y: 0.0025615536, z: 0.0058932737}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKey7
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035199998, y: 0.0025615536, z: 0.0030609416}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKey8
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035199998, y: 0.0025615536, z: 0.00022170434}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKey9
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035199998, y: 0.0025615536, z: -0.0026409426}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKey0
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035199998, y: 0.0025615536, z: -0.005480148}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyMiddleDash
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035199998, y: 0.0025615536, z: -0.008304458}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyENTER
+      parentName: Keyboard(Clone)
+      position: {x: -0.002096444, y: 0.0025615536, z: -0.014145113}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyPgShiftRight
+      parentName: Keyboard(Clone)
+      position: {x: -0.005086444, y: 0.0025615536, z: -0.012584657}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyBackspace
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035199998, y: 0.0025615536, z: -0.012584657}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyFN
+      parentName: Keyboard(Clone)
+      position: {x: -0.0080699995, y: 0.0025615536, z: -0.00870494}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyCustomKey
+      parentName: Keyboard(Clone)
+      position: {x: -0.0080699995, y: 0.0025615536, z: -0.011793694}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyCTRLRight
+      parentName: Keyboard(Clone)
+      position: {x: -0.0080699995, y: 0.0025615536, z: -0.01488506}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyF1
+      parentName: Keyboard(Clone)
+      position: {x: 0.00716, y: 0.0025615536, z: 0.018890068}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyF2
+      parentName: Keyboard(Clone)
+      position: {x: 0.00716, y: 0.0025615536, z: 0.01601107}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyF3
+      parentName: Keyboard(Clone)
+      position: {x: 0.00716, y: 0.0025615536, z: 0.013136191}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyF4
+      parentName: Keyboard(Clone)
+      position: {x: 0.00716, y: 0.0025615536, z: 0.010249283}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyF5
+      parentName: Keyboard(Clone)
+      position: {x: 0.00716, y: 0.0025615536, z: 0.0063944403}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyF6
+      parentName: Keyboard(Clone)
+      position: {x: 0.00716, y: 0.0025615536, z: 0.0035259314}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyF7
+      parentName: Keyboard(Clone)
+      position: {x: 0.00716, y: 0.0025615536, z: 0.0006135687}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyF8
+      parentName: Keyboard(Clone)
+      position: {x: 0.00716, y: 0.0025615536, z: -0.0022856307}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyF9
+      parentName: Keyboard(Clone)
+      position: {x: 0.00716, y: 0.0025615536, z: -0.0062675206}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyF10
+      parentName: Keyboard(Clone)
+      position: {x: 0.00716, y: 0.0025615536, z: -0.009166719}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyF11
+      parentName: Keyboard(Clone)
+      position: {x: 0.00716, y: 0.0025615536, z: -0.012024737}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyF12
+      parentName: Keyboard(Clone)
+      position: {x: 0.00716, y: 0.0025615536, z: -0.014940571}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyDel
+      parentName: Keyboard(Clone)
+      position: {x: 0.0007765521, y: 0.0025615536, z: -0.018970305}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyInsert
+      parentName: Keyboard(Clone)
+      position: {x: 0.003606552, y: 0.0025615536, z: -0.018971434}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyHome
+      parentName: Keyboard(Clone)
+      position: {x: 0.003606552, y: 0.0025615536, z: -0.021817407}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyPgUp
+      parentName: Keyboard(Clone)
+      position: {x: 0.003606552, y: 0.0025615536, z: -0.024741385}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyPgDn
+      parentName: Keyboard(Clone)
+      position: {x: 0.0007765521, y: 0.0025615536, z: -0.024735436}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyEnd
+      parentName: Keyboard(Clone)
+      position: {x: 0.0007765521, y: 0.0025615536, z: -0.02182123}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyLeft
+      parentName: Keyboard(Clone)
+      position: {x: -0.008104515, y: 0.0025615536, z: -0.018970305}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyDown
+      parentName: Keyboard(Clone)
+      position: {x: -0.008104515, y: 0.0025615536, z: -0.02182123}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyRight
+      parentName: Keyboard(Clone)
+      position: {x: -0.008104515, y: 0.0025615536, z: -0.024735436}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyUp
+      parentName: Keyboard(Clone)
+      position: {x: -0.005274515, y: 0.0025615536, z: -0.021817407}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyPauseBreak
+      parentName: Keyboard(Clone)
+      position: {x: 0.007170676, y: 0.0025615536, z: -0.024741385}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyScrollLock
+      parentName: Keyboard(Clone)
+      position: {x: 0.007170676, y: 0.0025615536, z: -0.021817407}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyPrintScreen
+      parentName: Keyboard(Clone)
+      position: {x: 0.007170676, y: 0.0025615536, z: -0.018971434}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNum9
+      parentName: Keyboard(Clone)
+      position: {x: 0.00058077084, y: 0.0025615536, z: -0.034684435}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNum8
+      parentName: Keyboard(Clone)
+      position: {x: 0.00058077084, y: 0.0025615536, z: -0.03177023}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNum7
+      parentName: Keyboard(Clone)
+      position: {x: 0.00058077084, y: 0.0025615536, z: -0.028919308}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNumLock
+      parentName: Keyboard(Clone)
+      position: {x: 0.0034107708, y: 0.0025615536, z: -0.028920434}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNumSlash
+      parentName: Keyboard(Clone)
+      position: {x: 0.0034107708, y: 0.0025615536, z: -0.03176641}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNumDivide
+      parentName: Keyboard(Clone)
+      position: {x: 0.0034107708, y: 0.0025615536, z: -0.034690388}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNum3
+      parentName: Keyboard(Clone)
+      position: {x: -0.0051210583, y: 0.0025615536, z: -0.034684435}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNum2
+      parentName: Keyboard(Clone)
+      position: {x: -0.0051210583, y: 0.0025615536, z: -0.03177023}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNum1
+      parentName: Keyboard(Clone)
+      position: {x: -0.0051210583, y: 0.0025615536, z: -0.028919308}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNum4
+      parentName: Keyboard(Clone)
+      position: {x: -0.002291058, y: 0.0025615536, z: -0.028920434}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNum5
+      parentName: Keyboard(Clone)
+      position: {x: -0.002291058, y: 0.0025615536, z: -0.03176641}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNum6
+      parentName: Keyboard(Clone)
+      position: {x: -0.002291058, y: 0.0025615536, z: -0.034690388}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNumPoint
+      parentName: Keyboard(Clone)
+      position: {x: -0.008030247, y: 0.0025615536, z: -0.034684435}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNum0
+      parentName: Keyboard(Clone)
+      position: {x: -0.008029999, y: 0.0025615536, z: -0.030353628}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNumEnter
+      parentName: Keyboard(Clone)
+      position: {x: -0.006608212, y: 0.0025615536, z: -0.03757137}
+      rotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNumAdd
+      parentName: Keyboard(Clone)
+      position: {x: -0.00083326123, y: 0.0025615536, z: -0.03757137}
+      rotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyNumMinus
+      parentName: Keyboard(Clone)
+      position: {x: 0.0034107708, y: 0.0025615536, z: -0.0376098}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyHookRight
+      parentName: Keyboard(Clone)
+      position: {x: 0.00072999997, y: 0.0025615536, z: -0.0118374955}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyPipe
+      parentName: Keyboard(Clone)
+      position: {x: 0.00072999997, y: 0.0025615536, z: -0.014972189}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kKeyEqual
+      parentName: Keyboard(Clone)
+      position: {x: 0.0035199998, y: 0.0025615536, z: -0.011094712}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 0.20460208, y: 1.3497815, z: 0.20460208}
+    - name: kPillar
+      parentName: Keyboard(Clone)
+      position: {x: -0.00047728358, y: 0.0016575905, z: -0.0073235356}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
