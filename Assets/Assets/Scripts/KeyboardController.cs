@@ -23,8 +23,8 @@ public class KeyboardController : MonoBehaviour
 
     #region Ammo
     [Header("Ammo")]
-   // public Text currentAmmotext;
-    //public Text carriedAmmotext;
+    public Text currentAmmotext;
+    public Text carriedAmmotext;
     public int currentAmmo = 12;
     public int maxAmmo = 12;
     public int carriedAmmo = 60;
@@ -57,15 +57,15 @@ public class KeyboardController : MonoBehaviour
      [SerializeField] private float maxForceTime;
      #endregion*/
 
-    /*[Header("CROSSHAÝR")]
+   [Header("CROSSHAÝR")]
     public GameObject crossHair;
     public Image[] colorCrosshair;
-    */
+    
     public void Start()
     {
         playerRig =GameObject.FindGameObjectWithTag("Player"). GetComponent<PlayerController>();
 
-        //crossHair.SetActive(true);
+        crossHair.SetActive(true);
 
     }
 
@@ -101,7 +101,7 @@ public class KeyboardController : MonoBehaviour
 
             isAim = true;
 
-            //crossHair.SetActive(false);
+            crossHair.SetActive(false);
 
 
         }
@@ -112,7 +112,7 @@ public class KeyboardController : MonoBehaviour
                 playerRig.rigController.SetBool("Aim", false);
 
                 isAim = false;
-              //  crossHair.SetActive(true);
+                crossHair.SetActive(true);
             }
         }
         #endregion
@@ -155,6 +155,7 @@ public class KeyboardController : MonoBehaviour
         //StartCoroutine(GunSoundAndMuzzleflash());
         if (Physics.Raycast(ShootPoint.position, ShootPoint.forward, out raycastHit, range))
         {
+            Debug.Log("xd");
             bulletClone = Instantiate(bulletPrefab, ShootPoint.position, ShootPoint.rotation);
             Rigidbody rb = bulletClone.GetComponent<Rigidbody>();
             rb.AddForce(ShootPoint.forward * shootForce, ForceMode.Impulse);
@@ -163,12 +164,9 @@ public class KeyboardController : MonoBehaviour
 
             if (raycastHit.transform.CompareTag("Enemy"))
             {
-                Destroy(raycastHit.collider.gameObject);
-
-              
+                Destroy(raycastHit.transform.gameObject);
             }
-
-            Destroy(bulletClone);
+            Destroy(bulletClone, 3f);
         }
     }
 
@@ -181,7 +179,7 @@ public class KeyboardController : MonoBehaviour
 
             if (!isAim)
             {
-               // crossHair.SetActive(true);
+               crossHair.SetActive(true);
             }
             playerRig.rigController.Play("Reload");
 
@@ -217,11 +215,11 @@ public class KeyboardController : MonoBehaviour
         }
     }
 
-    /*private void UpdateAmmoUI()
+    private void UpdateAmmoUI()
     {
         currentAmmotext.text = currentAmmo.ToString();
         carriedAmmotext.text = carriedAmmo.ToString();
-    }*/
+    }
 
     private void DryFire()
     {

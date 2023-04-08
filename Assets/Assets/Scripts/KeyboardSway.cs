@@ -4,38 +4,34 @@ using UnityEngine;
 
 public class KeyboardSway : MonoBehaviour
 {
-
-    Vector3 currentRotation, targetRotation, targetPosition, currentPosition, initialGunPosition;
+    [SerializeField] float kickBackZ;
+    Vector3 targetPosition, currentPosition, initialGunPosition, currentRotation;
     public Transform cam;
 
-    [SerializeField] float recoilX;
-    [SerializeField] float recoilY;
-    [SerializeField] float recoilZ;
-    [SerializeField] float aimRecoilX;
-    [SerializeField] float aimRecoilY;
-    [SerializeField] float aimRecoilZ;
-
-
+   
     public float snappiness, returnAmount;
-
     public void Start()
     {
         initialGunPosition = transform.localPosition;
+       
     }
 
-    public void Update()
+    void Update()
     {
-        targetRotation = Vector3.Lerp(targetRotation, Vector3.zero, returnAmount * Time.deltaTime);
-        currentRotation = Vector3.Slerp(currentRotation, targetRotation, snappiness * Time.fixedDeltaTime);
-        transform.localRotation = Quaternion.Euler(currentRotation);
+        KickBack();
+
+    }
+    public void KickBack()
+    {
+        targetPosition = Vector3.Lerp(targetPosition, initialGunPosition, Time.deltaTime * returnAmount);
+        currentPosition = Vector3.Lerp(currentPosition, targetPosition, Time.fixedDeltaTime * snappiness);
+        transform.localPosition = currentPosition;
     }
 
-    public void Recoil()
+    public void Back()
     {
 
-       targetRotation += new Vector3(recoilX, UnityEngine.Random.Range(-recoilY, recoilY), UnityEngine.Random.Range(-recoilZ, recoilZ));
-
+        targetPosition -= new Vector3(0, 0, kickBackZ);
     }
-
 
 }
