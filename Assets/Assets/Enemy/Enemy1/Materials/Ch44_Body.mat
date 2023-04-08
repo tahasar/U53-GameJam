@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ch44_1001_Diffuse
+  m_Name: Ch44_Body
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords:
   - _EMISSION
@@ -23,7 +23,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 2c4659d12f98c9744ae4fad6e59024c3, type: 3}
+        m_Texture: {fileID: 2800000, guid: a58fbf0a07a330045a21338f5b4a9173, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -39,11 +39,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 47fbfcc3b8c112f47b2522b3fd230310, type: 3}
+        m_Texture: {fileID: 2800000, guid: 04ec0d1390c88b342825a082398a4225, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 4c25d96c1878e6143b785734ae19ff37, type: 3}
+        m_Texture: {fileID: 2800000, guid: a23b43e25fa51c147b63879c865917cb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -65,7 +65,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.261
+    - _Glossiness: 0.4472136
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
