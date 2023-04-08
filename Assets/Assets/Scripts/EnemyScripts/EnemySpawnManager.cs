@@ -26,8 +26,8 @@ public class EnemySpawnManager : MonoBehaviour
     private double accumulatedWeights;
     private System.Random rand = new System.Random();
     
-    [SerializeField] Vector2 spawnArea;
-    GameObject player;
+    [SerializeField] Vector3 spawnArea;
+    public GameObject player;
 
     private void Awake()
     {
@@ -36,11 +36,10 @@ public class EnemySpawnManager : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        if (isNight)
-        {
-            InvokeRepeating("SpawnRandomEnemy", 2, spawnTime);
-        }
+        //player = GameObject.FindGameObjectWithTag("Player");
+        
+        InvokeRepeating("SpawnRandomEnemy", 2, spawnTime);
+        
     }
 
     private void SpawnRandomEnemy()
@@ -50,25 +49,33 @@ public class EnemySpawnManager : MonoBehaviour
         Instantiate(randomEnemy.Prefab, GenerateRandomPosition(), Quaternion.identity, transform);
     }
 
-    private Vector2 GenerateRandomPosition()
+    private Vector3 GenerateRandomPosition()
     {
-        Vector2 position = new Vector2();
+        var position = new Vector3();
 
-        float f = Random.value > 0.5f ? -1f : 1f;
-        if (Random.value > 0.5f)
-        {
-            position.x = Random.Range(-spawnArea.x, spawnArea.x);
-            position.y = spawnArea.y * f;
-        }
-        else
-        {
-            position.y = Random.Range(-spawnArea.y, spawnArea.y);
-            position.x = spawnArea.x * f;
-        }
+        //float f = Random.value > 0.5f ? -1f : 1f;
+        //if (Random.value > 0.0f)
+        //{
+        //    position.x = Random.Range(-spawnArea.x, spawnArea.x);
+        //    //position.z = spawnArea.z * f;
+        //    Debug.Log("1");
+        //}
+        //else
+        //{
+        //    position.z = Random.Range(-spawnArea.z, spawnArea.z);
+        //    //position.x = spawnArea.x * f;
+        //    Debug.Log("2");
+        //}
         
-        position += (Vector2)player.transform.position;
+        position.x = Random.Range(-spawnArea.x,spawnArea.x);
+        position.z = Random.Range(-spawnArea.z,spawnArea.z);
+
         
-        return position;
+        Vector3 result = new Vector3(position.x, position.y, position.z);
+
+        //position += (Vector3)player.transform.position;
+        
+        return result;
     }
 
     private int GetRandomEnemyIndex()
