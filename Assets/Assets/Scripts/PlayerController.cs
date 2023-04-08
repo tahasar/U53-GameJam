@@ -55,6 +55,13 @@ public class PlayerController : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
+        if (Input.GetButtonDown("Fire1"))
+        {
+            rigController.Play("shoot");
+        }
+
+
+
 
     }
 

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Assets/Animation/shoot.anim.meta
 guid: 50480b663a8c8ef41800707d05a46fc4
+=======
+guid: d0a57596755cd6b41b444c14ce1207bd
+>>>>>>> Stashed changes:Assets/huso/Animation/shoot.anim.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000
