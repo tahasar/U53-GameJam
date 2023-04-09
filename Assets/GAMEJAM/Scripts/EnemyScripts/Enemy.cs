@@ -8,48 +8,42 @@ public class Enemy : MonoBehaviour
     
     [Header("Hedefler")]
     public GameObject target; // Oyuncu karakteri
-    
+    [Space]
     public float health;
     public float range;
     public float attackDamage;
     public Animator animator;
-    public string enemyName;
-    public string enemyInfo;
-    public float maxHealth;
-    public float speed;
     public Transform enemyTransform;
     public bool inRange;
-    public bool isDead = false;
     public Vector2 movement;
+    [Space]
     public AudioSource deathSound;
-    public Collider collider;
-    public GameObject characterForm;
 
-    public bool isAttacking;
+    int attackRandomIndex;
+    [HideInInspector] PlayerHealth playerHealth;
+    private GameManager gameManager;
 
     public NavMeshAgent enemy;
 
     private void Start()
     {
         target = GameObject.FindWithTag("Player");
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+
+        attackRandomIndex = UnityEngine.Random.Range(0, 3);
+        gameManager = GameManager.instance;
     }
 
     public void Update()
     {
         GetTargetDistance(); // Hedef ile düşman arasındaki mesafeyi ölçer.
         
-        if(!isAttacking)
+        if(!inRange)
         {
             Move(movement);
         }
-
-        if (isDead)
-        {
-            deathSound.Play();
-            //dropOnDestroy.Drop();
-            Destroy(gameObject);
-            isDead = false;
-        }
+        else
+            Attack();
     }
 
     private void GetTargetDistance()        // Hedef ile düşman arasındaki mesafeyi ölçer.
@@ -60,33 +54,31 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
-        
+
         if (health <= 0)
         {
-            Destroy(characterForm);
-            collider.enabled = false;
-            isDead = true;
+            EnemyDead();
         }
+    }
+    void EnemyDead()
+    {
+        gameManager.ScoreUpdate(1);
+        Destroy(gameObject);
     }
 
     public void Attack()
     {
-        if(inRange)
-        {
-            //karaktere hasar verecek.
-        }
+        animator.SetInteger("AttackType", attackRandomIndex);
+        animator.SetTrigger("Attack");
+
+    }
+    public void DamagePlayer() //AnimationEvent
+    {
+        playerHealth.DamagePlayer(attackDamage);
     }
 
     public void Move(Vector3 direction) // Hedef menzilde(inRange) değilse hareket eder.
     {
-        if (inRange)
-        {
-            animator.SetTrigger("Attack");
-        }
-        else
-        {
-            //enemyTransform.position = ((Vector3)enemyTransform.position + (direction * (speed * Time.deltaTime)));
-            enemy.SetDestination(target.transform.position);
-        }
+        enemy.SetDestination(target.transform.position);
     }
 }
