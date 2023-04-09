@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Enemy
+  - KeyBoard
+  - Collectable
   layers:
   - Default
   - TransparentFX
@@ -12,10 +15,10 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - PostProcessing
+  - Collectables
+  - Enemies
+  - Player
   - 
   - 
   - 
