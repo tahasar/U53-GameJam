@@ -8,6 +8,10 @@ TagManager:
   - Enemy
   - KeyBoard
   - Collectable
+  - GameManager
+  - CollectKey
+  - CollectKeyBoard
+  - CollectMouse
   layers:
   - Default
   - TransparentFX

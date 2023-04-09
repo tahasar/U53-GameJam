@@ -28,17 +28,25 @@ public class PlayerController : MonoBehaviour
     public float gravity;
     public float jumpHeight;
 
+    [HideInInspector] GameManager gameManager;
+
     public void Start()
     {
         characterControl = GetComponent<CharacterController>();
+        gameManager = GameManager.instance;
     }
 
 
     public void Update()
     {
-        if(isGrounded)
+        if (isGrounded && !gameManager.brokenDirection)
         {
             moveVector = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+            deneme = moveVector.normalized;
+        }
+        else if (isGrounded &&gameManager.brokenDirection)
+        {
+            moveVector = Input.GetAxis("Vertical") * transform.right + Input.GetAxis("Horizontal") * transform.forward;
             deneme = moveVector.normalized;
         }
         characterControl.Move(moveVector * (playerSpeed * Time.deltaTime));

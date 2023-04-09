@@ -815,7 +815,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d82ce8ee2e4b5fe44960e0fab675156c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreReward: 1
+  scoreReward: 5
+  scaleDatas:
+  - size: 0.4
+    time: 1
+  - size: 0.6
+    time: 1
 --- !u!1 &215735160000082964
 GameObject:
   m_ObjectHideFlags: 0

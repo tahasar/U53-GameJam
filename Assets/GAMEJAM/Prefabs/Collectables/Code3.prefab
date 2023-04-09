@@ -816,6 +816,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreReward: 15
+  scaleDatas:
+  - size: 0.4
+    time: 1
+  - size: 0.6
+    time: 1
 --- !u!1 &215735160000082964
 GameObject:
   m_ObjectHideFlags: 0

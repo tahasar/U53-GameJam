@@ -62,12 +62,17 @@ public class KeyBoardController : MonoBehaviour
     public Image[] colorCrosshair;
 
     [Header("KEYS")]
-
     Transform[] keys;
     int keysCount;
     public Transform parent;
     public GameObject keyParticle;
     public ParticleSystem particleKey;
+
+    #region Force
+    [Header("Force")]
+    [SerializeField] private float maxForce;
+    [SerializeField] private float maxForceTime;
+    #endregion
 
     public void Start()
     {
@@ -130,18 +135,19 @@ public class KeyBoardController : MonoBehaviour
             if (isShoot)
             {
                 particleKey.Play();
-                if (keysCount >0)
+                if (keysCount > 0)
                 {
                     keys[keysCount - 1].gameObject.SetActive(false);
                     keysCount--;
-                   
+                    carriedAmmo = keysCount;
+                    currentAmmo--;
                 }
 
                 nextFire = 0;
 
                 nextFire = Time.time + rateOffire;
 
-                currentAmmo--;
+
 
                 //MuzzleFlash.SetActive(true);
 
@@ -167,15 +173,32 @@ public class KeyBoardController : MonoBehaviour
         //StartCoroutine(GunSoundAndMuzzleflash());
         if (Physics.Raycast(ShootPoint.position, ShootPoint.forward, out raycastHit, range))
         {
-            bulletClone = Instantiate(bulletPrefab,TrailBulletPos.transform.position,TrailBulletPos.transform.rotation);
+            bulletClone = Instantiate(bulletPrefab, TrailBulletPos.transform.position, TrailBulletPos.transform.rotation);
             Rigidbody rb = bulletClone.GetComponent<Rigidbody>();
             rb.AddForce(ShootPoint.forward * shootForce, ForceMode.Impulse);
 
             shootRay = true;
             if (raycastHit.transform.CompareTag("Enemy"))
             {
-                Enemy enemyHealth = raycastHit.transform.GetComponent<Enemy>();
-                enemyHealth.TakeDamage(damage);
+                Enemy enemy = raycastHit.collider.GetComponentInParent<Enemy>();
+                enemy.TakeDamage(damage);
+
+                if (enemy.health <= 0)
+                {
+                    #region RagdollForce
+                    float mouseButtonDown = Time.time - 1;
+                    float forcePercentage = mouseButtonDown / maxForceTime;
+                    float forceMagnitude = Mathf.Lerp(1, maxForce, forcePercentage);
+
+                    Vector3 forceDirection = enemy.transform.position - transform.position;
+                    forceDirection.y = 1;
+                    forceDirection.Normalize();
+                    Vector3 force = forceMagnitude * forceDirection;
+                    #endregion
+
+                    enemy.TriggerRagdoll(force, raycastHit.point);
+                }
+
             }
             Destroy(bulletClone, 3f);
         }
@@ -201,7 +224,7 @@ public class KeyBoardController : MonoBehaviour
             StartCoroutine(ReloadCountdown(1.5f));
         }
     }
-   
+
     IEnumerator ReloadCountdown(float timer)
     {
         while (timer > 0f)
@@ -283,8 +306,19 @@ public class KeyBoardController : MonoBehaviour
                 ui.GetComponent<Image>().color = Color.red;
             }
         }
-       
+
+
+    }
+
+    public void KeyBoardFix()
+    {
         
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            keys[i] = parent.GetChild(i);
+            keys[i].gameObject.SetActive(true);
+        }
+
     }
 
 }

@@ -45,7 +45,6 @@ public class CollectableSpawnManager : MonoBehaviour
 
         Instantiate(randomEnemy.Prefab, GenerateRandomPosition(), Quaternion.identity, transform);
         
-        Debug.Log(GameManager.instance.score);
     }
 
     private Vector3 GenerateRandomPosition()
