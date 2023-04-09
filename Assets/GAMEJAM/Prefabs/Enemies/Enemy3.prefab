@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4071185782778769817}
   - component: {fileID: -653215275489290722}
   m_Layer: 8
-  m_Name: Enemy1
+  m_Name: Enemy3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,9 +80,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  health: 75
+  health: 150
   range: 2
-  attackDamage: 25
+  attackDamage: 45
   inRange: 0
   turnSpeed: 20
   animator: {fileID: 186567024715000905}
@@ -102,7 +102,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 3
+  m_Speed: 6
   m_Acceleration: 500
   avoidancePriority: 50
   m_AngularSpeed: 10000
@@ -917,6 +917,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -150.20859
       objectReference: {fileID: 0}
+    - target: {fileID: 1172324090021531726, guid: ab430ee8d04f62145957acdca5567e40, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6fc8f361305a0964593b6e05a955cf80, type: 2}
+    - target: {fileID: 1172324090021531726, guid: ab430ee8d04f62145957acdca5567e40, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 92c5be0ed5468384d9e00341c6e53c82, type: 2}
     - target: {fileID: 1189529853000058984, guid: ab430ee8d04f62145957acdca5567e40, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 84.204506

@@ -42,14 +42,17 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && !gameManager.brokenDirection)
         {
             moveVector = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-            deneme = moveVector.normalized;
         }
-        else if (isGrounded &&gameManager.brokenDirection)
+        else if (isGrounded && gameManager.brokenDirection)
         {
             moveVector = Input.GetAxis("Vertical") * transform.right + Input.GetAxis("Horizontal") * transform.forward;
-            deneme = moveVector.normalized;
         }
         characterControl.Move(moveVector * (playerSpeed * Time.deltaTime));
+
+        //if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)|| Input.GetKey(KeyCode.W))
+        //{
+        //    Debug.Log("araba");
+        //}
 
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);

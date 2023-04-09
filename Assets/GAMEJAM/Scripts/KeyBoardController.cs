@@ -41,6 +41,8 @@ public class KeyBoardController : MonoBehaviour
     //public GameObject bulletEffect;
     [SerializeField] private TrailRenderer Bullettrail;
     public GameObject TrailBulletPos;
+    public AudioClip[] tusSesleri;
+    private AudioSource audio;
     #endregion
 
     /* #region Audio
@@ -78,6 +80,7 @@ public class KeyBoardController : MonoBehaviour
     {
         playerRig = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
+        audio = GetComponent<AudioSource>();
         crossHair.SetActive(true);
         keys = new Transform[parent.childCount];
         keysCount = keys.Length;
@@ -150,7 +153,8 @@ public class KeyBoardController : MonoBehaviour
 
 
                 //MuzzleFlash.SetActive(true);
-
+                audio.clip = tusSesleri[Random.Range(0, 2)];
+                audio.Play();
                 ShootRay();
 
                 if (isAim && shootRay)

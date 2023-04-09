@@ -3,6 +3,7 @@ using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -24,8 +25,6 @@ public class Enemy : MonoBehaviour
     int attackRandomIndex;
 
     [SerializeField] Vector2 movement;
-    [Space]
-    public AudioSource deathSound;
 
     [HideInInspector] PlayerHealth playerHealth;
     private GameManager gameManager;
@@ -37,11 +36,24 @@ public class Enemy : MonoBehaviour
     bool ragdollMode = false;
     #endregion
 
+    #region SoundEffects
+
+    public AudioClip[] enemyDeadSesleri;
+    private AudioSource audio;
+
+    #endregion
+
+    public bool attackMode = false;
+    private Collider collider;
+
     private void Start()
     {
         target = GameObject.FindWithTag("Player");
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         enemyAgent = GetComponent<NavMeshAgent>();
+
+        audio = GetComponent<AudioSource>();
+        collider = GetComponent<Collider>();
 
         //attackRandomIndex = UnityEngine.Random.Range(0, 3);
         gameManager = GameManager.instance;
@@ -85,6 +97,8 @@ public class Enemy : MonoBehaviour
     }
     void EnemyDead()
     {
+        audio.clip = enemyDeadSesleri[Random.Range(0, 3)];
+        audio.Play();
         gameManager.ScoreUpdate(1);
         Destroy(gameObject, 2f);
         enemyAgent.updatePosition = false;
@@ -93,7 +107,7 @@ public class Enemy : MonoBehaviour
 
     public void Attack()
     {
-        //animator.SetInteger("AttackType", attackRandomIndex);
+        animator.SetInteger("AttackType", Random.Range(0,2));
         animator.SetBool("isAttack", true);
 
         Vector3 direction = target.transform.position - transform.position;//bakıcağımız pozisyonu belirledik
@@ -113,10 +127,12 @@ public class Enemy : MonoBehaviour
 
     public void Move(Vector3 direction) // Hedef menzilde(inRange) değilse hareket eder.
     {
-        enemyAgent.SetDestination(target.transform.position);
-        enemyAgent.updatePosition = true;
-        enemyAgent.updateRotation = true;
-
+        if(!attackMode){
+            enemyAgent.SetDestination(target.transform.position);
+            enemyAgent.updatePosition = true;
+            enemyAgent.updateRotation = true;
+        }
+        
         animator.SetBool("isAttack", false);
     }
 
