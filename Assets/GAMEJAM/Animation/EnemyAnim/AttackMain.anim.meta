@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/GAMEJAM/Animation/EnemyAnim/AttackMain.anim.meta
 guid: 42d3dca04e324ed4bab89bcc344345d2
+========
+guid: d4b6fa52fb0295f4fa2f9e6b163aae5e
+>>>>>>>> seydanınBranchBirleştiriilecekkk:Assets/GAMEJAM/Animation/EnemyAnim/Attack1.anim.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/GAMEJAM/Prefabs/Canvas (1).prefab.meta
 guid: 4f2e4ffed290e824795808b7286a46f2
+========
+guid: 298b5dee9133bf84da0757f7b34ca8d5
+>>>>>>>> seydanınBranchBirleştiriilecekkk:Assets/GAMEJAM/Prefabs/Player/Player.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
