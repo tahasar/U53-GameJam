@@ -38,7 +38,7 @@ public class EnemySpawnManager : MonoBehaviour
     {
         //player = GameObject.FindGameObjectWithTag("Player");
         
-        InvokeRepeating("SpawnRandomEnemy", 2, spawnTime);
+        InvokeRepeating("SpawnRandomEnemy", 0f, spawnTime);
         
     }
 

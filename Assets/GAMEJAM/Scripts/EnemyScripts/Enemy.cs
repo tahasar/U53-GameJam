@@ -26,30 +26,39 @@ public class Enemy : MonoBehaviour
     public GameObject characterForm;
 
     public bool isAttacking;
+    int attackRandomIndex;
+    [HideInInspector] PlayerHealth playerHealth;
 
     public NavMeshAgent enemy;
 
     private void Start()
     {
         target = GameObject.FindWithTag("Player");
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+
+        attackRandomIndex = UnityEngine.Random.Range(0, 3);
     }
 
     public void Update()
     {
         GetTargetDistance(); // Hedef ile düşman arasındaki mesafeyi ölçer.
         
-        if(!isAttacking)
+        if(!inRange)
         {
             Move(movement);
+            animator.SetBool("isAttack", false);
         }
-
-        if (isDead)
+        else
+            Attack();
+       
+        if (health <= 0)
         {
-            deathSound.Play();
+            //deathSound.Play();
             //dropOnDestroy.Drop();
-            Destroy(gameObject);
+            EnemyDead();
             isDead = false;
         }
+      
     }
 
     private void GetTargetDistance()        // Hedef ile düşman arasındaki mesafeyi ölçer.
@@ -60,33 +69,30 @@ public class Enemy : MonoBehaviour
     public virtual void TakeDamage(float damageAmount)
     {
         health -= damageAmount;
-        
+
         if (health <= 0)
         {
-            Destroy(characterForm);
-            collider.enabled = false;
-            isDead = true;
+            Destroy(gameObject);
         }
+    }
+    void EnemyDead()
+    {
+        Destroy(gameObject);
     }
 
     public void Attack()
     {
-        if(inRange)
-        {
-            //karaktere hasar verecek.
-        }
+        animator.SetInteger("Attack", attackRandomIndex);
+        animator.SetBool("isAttack", true);
+
+    }
+    public void DamagePlayer() //AnimationEvent
+    {
+        playerHealth.DamagePlayer(attackDamage);
     }
 
     public void Move(Vector3 direction) // Hedef menzilde(inRange) değilse hareket eder.
     {
-        if (inRange)
-        {
-            animator.SetTrigger("Attack");
-        }
-        else
-        {
-            //enemyTransform.position = ((Vector3)enemyTransform.position + (direction * (speed * Time.deltaTime)));
-            enemy.SetDestination(target.transform.position);
-        }
+        enemy.SetDestination(target.transform.position);
     }
 }

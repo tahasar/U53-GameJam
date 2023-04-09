@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.UI;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class KeyBoardController : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class KeyBoardController : MonoBehaviour
     [SerializeField] float rateOffire;
     float nextFire = 0f;
     public bool isAim = false;
-    
+
 
     #region Ammo
     [Header("Ammo")]
@@ -60,18 +61,30 @@ public class KeyBoardController : MonoBehaviour
     public GameObject crossHair;
     public Image[] colorCrosshair;
 
+    [Header("KEYS")]
+
+    Transform[] keys;
+    int keysCount;
+    public Transform parent;
+    public GameObject keyParticle;
+    public ParticleSystem particleKey;
+
     public void Start()
     {
         playerRig = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         crossHair.SetActive(true);
-
+        keys = new Transform[parent.childCount];
+        keysCount = keys.Length;
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            keys[i] = parent.GetChild(i);
+        }
     }
-
 
     public void Update()
     {
-        //UpdateAmmoUI();
+        UpdateAmmoUI();
         #region SHOOT
 
         if (Input.GetButton("Fire1") && currentAmmo > 0 && isShoot)
@@ -91,8 +104,7 @@ public class KeyBoardController : MonoBehaviour
 
         #endregion
 
-
-        #region AÝM
+        #region AiM
         if (Input.GetButtonDown("Fire2"))
         {
             playerRig.rigController.SetBool("Aim", true);
@@ -109,8 +121,6 @@ public class KeyBoardController : MonoBehaviour
             }
         }
         #endregion
-
-
     }
 
     private void Shoot()
@@ -119,6 +129,14 @@ public class KeyBoardController : MonoBehaviour
         {
             if (isShoot)
             {
+                particleKey.Play();
+                if (keysCount >0)
+                {
+                    keys[keysCount - 1].gameObject.SetActive(false);
+                    keysCount--;
+                   
+                }
+
                 nextFire = 0;
 
                 nextFire = Time.time + rateOffire;
@@ -145,19 +163,19 @@ public class KeyBoardController : MonoBehaviour
 
     private void ShootRay()
     {
+
         //StartCoroutine(GunSoundAndMuzzleflash());
         if (Physics.Raycast(ShootPoint.position, ShootPoint.forward, out raycastHit, range))
         {
-            Debug.Log("xd");
-            bulletClone = Instantiate(bulletPrefab, ShootPoint.position, ShootPoint.rotation);
+            bulletClone = Instantiate(bulletPrefab,TrailBulletPos.transform.position,TrailBulletPos.transform.rotation);
             Rigidbody rb = bulletClone.GetComponent<Rigidbody>();
             rb.AddForce(ShootPoint.forward * shootForce, ForceMode.Impulse);
 
             shootRay = true;
-
             if (raycastHit.transform.CompareTag("Enemy"))
             {
-                Destroy(raycastHit.transform.gameObject);
+                Enemy enemyHealth = raycastHit.transform.GetComponent<Enemy>();
+                enemyHealth.TakeDamage(200f);
             }
             Destroy(bulletClone, 3f);
         }
@@ -165,7 +183,7 @@ public class KeyBoardController : MonoBehaviour
 
     private void Reload()
     {
-        if (!isReloading && currentAmmo != maxAmmo)
+        if (!isReloading && currentAmmo != maxAmmo && carriedAmmo != 0)
         {
 
             isShoot = false;
@@ -180,10 +198,10 @@ public class KeyBoardController : MonoBehaviour
             //reloadAS.PlayOneShot(reloadAC);
             if (carriedAmmo <= 0) return;
 
-            StartCoroutine(ReloadCountdown(2f));
+            StartCoroutine(ReloadCountdown(1.5f));
         }
     }
-
+   
     IEnumerator ReloadCountdown(float timer)
     {
         while (timer > 0f)
@@ -202,7 +220,7 @@ public class KeyBoardController : MonoBehaviour
             currentAmmo += bulletsToDeduct;
 
             isReloading = false;
-            //  UpdateAmmoUI();
+            UpdateAmmoUI();
             isShoot = true;
 
         }
@@ -212,7 +230,7 @@ public class KeyBoardController : MonoBehaviour
     {
         currentAmmotext.text = currentAmmo.ToString();
         carriedAmmotext.text = carriedAmmo.ToString();
-      
+
     }
 
     private void DryFire()
@@ -225,7 +243,7 @@ public class KeyBoardController : MonoBehaviour
         }
     }
 
-  private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit Hit)
+    private IEnumerator SpawnTrail(TrailRenderer Trail, RaycastHit Hit)
     {
         float time = 0f;
         Vector3 startPosition = Trail.transform.position;
@@ -238,12 +256,35 @@ public class KeyBoardController : MonoBehaviour
         Trail.transform.position = Hit.point;
     }
 
-   /* IEnumerator GunSoundAndMuzzleflash()
-    private void Shoot()
+    /* IEnumerator GunSoundAndMuzzleflash()
+     private void Shoot()
+     {
+         gunAS.PlayOneShot(shootAC);
+         yield return new WaitForSeconds(0.25f);
+         MuzzleFlash.SetActive(false);
+     }*/
+
+
+    private void CrossHairColor()
     {
-        gunAS.PlayOneShot(shootAC);
-        yield return new WaitForSeconds(0.25f);
-        MuzzleFlash.SetActive(false);
-    }*/
-      
+        if (raycastHit.transform.CompareTag("Enemy"))
+        {
+            for (int i = 0; i < colorCrosshair.Length; i++)
+            {
+                Image ui = colorCrosshair[i];
+                ui.GetComponent<Image>().color = Color.white;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < colorCrosshair.Length; i++)
+            {
+                Image ui = colorCrosshair[i];
+                ui.GetComponent<Image>().color = Color.red;
+            }
+        }
+       
+        
+    }
+
 }

@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 564812314}
   - component: {fileID: 564812313}
   - component: {fileID: 564812312}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfbee92dc1cb76443b89c357b2c35bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 0.1
+  spawnTime: 0
   enemies:
   - Name: Enemy1
     Prefab: {fileID: 8211268824292466471, guid: 8cca7cc6e58113f4ba59dcb2919e5968, type: 3}

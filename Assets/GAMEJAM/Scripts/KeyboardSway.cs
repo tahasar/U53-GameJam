@@ -4,34 +4,21 @@ using UnityEngine;
 
 public class KeyboardSway : MonoBehaviour
 {
-    [SerializeField] float kickBackZ;
-    Vector3 targetPosition, currentPosition, initialGunPosition, currentRotation;
-    public Transform cam;
+    [SerializeField] private float smooth;
+    [SerializeField] private float swayMultiplier;
 
-   
-    public float snappiness, returnAmount;
-    public void Start()
-    {
-        initialGunPosition = transform.localPosition;
-       
-    }
-
-    void Update()
-    {
-        KickBack();
-
-    }
-    public void KickBack()
-    {
-        targetPosition = Vector3.Lerp(targetPosition, initialGunPosition, Time.deltaTime * returnAmount);
-        currentPosition = Vector3.Lerp(currentPosition, targetPosition, Time.fixedDeltaTime * snappiness);
-        transform.localPosition = currentPosition;
-    }
-
-    public void Back()
+    public void Update()
     {
 
-        targetPosition -= new Vector3(0, 0, kickBackZ);
+        float mouseX = Input.GetAxisRaw("Mouse X") * swayMultiplier;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * swayMultiplier;
+
+        Quaternion rotationX = Quaternion.AngleAxis(-mouseY, Vector3.right);
+        Quaternion rotationY = Quaternion.AngleAxis(mouseX, Vector3.up);
+
+        Quaternion targetRotation = rotationX * rotationY;
+
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, smooth * Time.deltaTime);
     }
 
 }
