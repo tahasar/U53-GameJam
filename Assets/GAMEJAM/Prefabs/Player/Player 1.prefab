@@ -2890,7 +2890,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cbbc5c3696b23b1469d9a167cd6cfc07, type: 2}
+  - {fileID: 2100000, guid: e20f503514323ff4e9f692aeb354d1f3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15878,13 +15878,16 @@ MonoBehaviour:
   weaponRightGrip: {fileID: 5613595460690193145}
   rigController: {fileID: 340959091228319943}
   playerSpeed: 5
+  isGrounded: 0
+  isJump: 0
+  isMove: 0
   groundCheck: {fileID: 4336461775685729327}
   groundMask:
     serializedVersion: 2
     m_Bits: 8
   groundDistance: 0.3
   gravity: -13.61
-  jumpHeight: 5
+  jumpHeight: 1
 --- !u!114 &340959091857006501
 MonoBehaviour:
   m_ObjectHideFlags: 0

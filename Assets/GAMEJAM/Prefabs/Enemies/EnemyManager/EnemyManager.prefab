@@ -64,11 +64,11 @@ MonoBehaviour:
     chance: 100
     _weight: 0
   - Name: Enemy2
-    Prefab: {fileID: 8211268824292466471, guid: 0e563a7184af2b64d92e4d6eedb6ff6f, type: 3}
+    Prefab: {fileID: 8211268824292466471, guid: 3bfa48603721d80479890f72cb28506e, type: 3}
     chance: 50
     _weight: 0
   - Name: Enemy3
-    Prefab: {fileID: 8211268824292466471, guid: 3bfa48603721d80479890f72cb28506e, type: 3}
+    Prefab: {fileID: 8211268824292466471, guid: 0e563a7184af2b64d92e4d6eedb6ff6f, type: 3}
     chance: 20
     _weight: 0
   spawnArea: {x: 49, y: 0, z: 49}
