@@ -23,7 +23,11 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+<<<<<<< Updated upstream
     importConstraints: 0
+=======
+    importConstraints: 1
+>>>>>>> Stashed changes
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -49,9 +53,15 @@ ModelImporter:
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
+<<<<<<< Updated upstream
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
+=======
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+>>>>>>> Stashed changes
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000

@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 3fb172e1c408bdd448a71b1034e3584e
+=======
+<<<<<<<< Updated upstream:Assets/GAMEJAM/Prefabs/Keyboard/CollectMouse.prefab.meta
+guid: 86aa12d37878cc34694b8822c2457a1a
+========
+guid: e1a26d98fd53b8a4ea28bea10abecc0e
+>>>>>>>> Stashed changes:Assets/GAMEJAM/Prefabs/Keyboard/Keyboard 1.prefab.meta
+>>>>>>> Stashed changes
 PrefabImporter:
   externalObjects: {}
   userData: 

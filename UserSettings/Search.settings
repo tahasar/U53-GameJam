@@ -7,7 +7,11 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
+<<<<<<< Updated upstream
 	"last_search.DE949528" = "Ragdol"
+=======
+	"last_search.DE949528" = "rag"
+>>>>>>> Stashed changes
 	"OpenInspectorPreview.DE949528" = "0"
 	"currentGroup.DE949528" = "all"
 }
