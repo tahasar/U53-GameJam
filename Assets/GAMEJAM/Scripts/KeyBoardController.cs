@@ -68,18 +68,11 @@ public class KeyBoardController : MonoBehaviour
     public GameObject keyParticle;
     public ParticleSystem particleKey;
 
-<<<<<<< Updated upstream
     #region Force
     [Header("Force")]
     [SerializeField] private float maxForce;
     [SerializeField] private float maxForceTime;
     #endregion
-=======
-    [Header("Force")]
-    [SerializeField] private float maxForce;
-    [SerializeField] private float maxForceTime;
-
->>>>>>> Stashed changes
 
     public void Start()
     {
@@ -187,25 +180,16 @@ public class KeyBoardController : MonoBehaviour
             shootRay = true;
             if (raycastHit.transform.CompareTag("Enemy"))
             {
-<<<<<<< Updated upstream
                 Enemy enemy = raycastHit.collider.GetComponentInParent<Enemy>();
                 enemy.TakeDamage(damage);
 
                 if (enemy.health <= 0)
-=======
-                Enemy enemyHealth = raycastHit.transform.GetComponentInParent<Enemy>();
-                enemyHealth.TakeDamage(damage);
-                Enemy enemyCol = raycastHit.collider.GetComponentInParent<Enemy>();
-
-                if (enemyHealth.health <=0)
->>>>>>> Stashed changes
                 {
                     #region RagdollForce
                     float mouseButtonDown = Time.time - 1;
                     float forcePercentage = mouseButtonDown / maxForceTime;
                     float forceMagnitude = Mathf.Lerp(1, maxForce, forcePercentage);
 
-<<<<<<< Updated upstream
                     Vector3 forceDirection = enemy.transform.position - transform.position;
                     forceDirection.y = 1;
                     forceDirection.Normalize();
@@ -215,16 +199,6 @@ public class KeyBoardController : MonoBehaviour
                     enemy.TriggerRagdoll(force, raycastHit.point);
                 }
 
-=======
-                    Vector3 forceDirection = enemyCol.transform.position - transform.position;
-                    forceDirection.y = 1;
-                    forceDirection.Normalize();
-                    Vector3 force = forceMagnitude * forceDirection;
-
-                    enemyCol.TriggerRagdoll(force, raycastHit.point);
-                    #endregion
-                }
->>>>>>> Stashed changes
             }
             Destroy(bulletClone, 3f);
         }

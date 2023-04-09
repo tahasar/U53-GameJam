@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
     public float range;
     public float attackDamage;
     public bool inRange;
-<<<<<<< Updated upstream
     public float turnSpeed;
     bool isDead = false;
 
@@ -25,10 +24,6 @@ public class Enemy : MonoBehaviour
     int attackRandomIndex;
 
     [SerializeField] Vector2 movement;
-=======
-    public Vector2 movement;
-    public float turnSpeed;
->>>>>>> Stashed changes
     [Space]
     public AudioSource deathSound;
 
@@ -36,55 +31,29 @@ public class Enemy : MonoBehaviour
     private GameManager gameManager;
     NavMeshAgent enemyAgent;
 
-<<<<<<< Updated upstream
-=======
-    public NavMeshAgent enemyNav;
-
->>>>>>> Stashed changes
     #region Ragdoll
     Rigidbody[] rigRagdoll;
     Collider[] colRagdoll;
     bool ragdollMode = false;
-<<<<<<< Updated upstream
     #endregion
-=======
-    public GameObject hipsRb;
-
-    #endregion
-
->>>>>>> Stashed changes
 
     private void Start()
     {
         target = GameObject.FindWithTag("Player");
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-<<<<<<< Updated upstream
         enemyAgent = GetComponent<NavMeshAgent>();
-=======
-        enemyNav = GetComponent<NavMeshAgent>();
->>>>>>> Stashed changes
 
         //attackRandomIndex = UnityEngine.Random.Range(0, 3);
         gameManager = GameManager.instance;
 
         GetRagdollbits();
         RagdollModeOff();
-<<<<<<< Updated upstream
-=======
-        
->>>>>>> Stashed changes
     }
 
     public void Update()
     {
-       /* Rigidbody rb = hipsRb.GetComponent<Rigidbody>();
-        rb.freezeRotation.
-       */
-
-
         GetTargetDistance(); // Hedef ile düşman arasındaki mesafeyi ölçer.
 
-<<<<<<< Updated upstream
         if (!isDead)
         {
             if (!inRange && !ragdollMode)
@@ -93,13 +62,6 @@ public class Enemy : MonoBehaviour
             }
             else
                 Attack();
-=======
-
-        if(!inRange && !ragdollMode)
-        {
-            Move(movement);
-           
->>>>>>> Stashed changes
         }
        
     }
@@ -124,18 +86,13 @@ public class Enemy : MonoBehaviour
     void EnemyDead()
     {
         gameManager.ScoreUpdate(1);
-<<<<<<< Updated upstream
         Destroy(gameObject, 2f);
         enemyAgent.updatePosition = false;
         enemyAgent.updateRotation = false;
-=======
-        Destroy(gameObject,2f);
->>>>>>> Stashed changes
     }
 
     public void Attack()
     {
-<<<<<<< Updated upstream
         //animator.SetInteger("AttackType", attackRandomIndex);
         animator.SetBool("isAttack", true);
 
@@ -147,14 +104,6 @@ public class Enemy : MonoBehaviour
 
         enemyAgent.updatePosition = false;
       
-=======
-        animator.SetInteger("AttackType", attackRandomIndex);
-        animator.SetBool("isAttack", true);
-        animator.SetBool("isRun", false);
-
-        enemyNav.updatePosition = false;
-        enemyNav.updateRotation = false;
->>>>>>> Stashed changes
 
     }
     public void DamagePlayer() //AnimationEvent
@@ -164,7 +113,6 @@ public class Enemy : MonoBehaviour
 
     public void Move(Vector3 direction) // Hedef menzilde(inRange) değilse hareket eder.
     {
-<<<<<<< Updated upstream
         enemyAgent.SetDestination(target.transform.position);
         enemyAgent.updatePosition = true;
         enemyAgent.updateRotation = true;
@@ -173,23 +121,6 @@ public class Enemy : MonoBehaviour
     }
 
     #region ****RAGDOLL****
-=======
-        animator.SetBool("isAttack", false);
-        animator.SetBool("isRun", true);
-        enemyNav.SetDestination(target.transform.position);
-        enemyNav.updatePosition = true;
-        enemyNav.updateRotation = true;
-
-        direction = target.transform.position - transform.position;//bakıcağımız pozisyonu belirledik
-        direction.y = 0;//yukarıya ve aşağıya bakamıcagı için 0'a eşitledik
-
-        transform.rotation = Quaternion.Slerp(transform.rotation,
-        Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
-
-
-    }
-    #region Ragdoll
->>>>>>> Stashed changes
     void GetRagdollbits()
     {
         rigRagdoll = GetComponentsInChildren<Rigidbody>();
@@ -212,18 +143,10 @@ public class Enemy : MonoBehaviour
             col.enabled = true;
         }
         animator.enabled = false;
-<<<<<<< Updated upstream
         enemyAgent.enabled = false;
         enemyAgent.updatePosition = false;
         enemyAgent.updateRotation = false;
       
-=======
-        enemyNav.enabled = false;
-        enemyNav.updatePosition = false;
-        enemyNav.updateRotation = false;
-       
-       
->>>>>>> Stashed changes
     }
 
     void RagdollModeOff()
