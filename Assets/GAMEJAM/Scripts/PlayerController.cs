@@ -20,7 +20,9 @@ public class PlayerController : MonoBehaviour
     CharacterController characterControl;
 
     bool isCrouch;
-    bool isGrounded;
+    public bool isGrounded;
+    public bool isJump;
+    public bool isMove;
     public Transform groundCheck;
     public LayerMask groundMask;
     public float groundDistance;
@@ -39,18 +41,30 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
-        if (isGrounded && !gameManager.brokenDirection)
+        if (!gameManager.brokenDirection && isGrounded)
         {
             moveVector = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-            deneme = moveVector.normalized;
+
         }
-        else if (isGrounded &&gameManager.brokenDirection)
+        else if (gameManager.brokenDirection && isGrounded)
         {
             moveVector = Input.GetAxis("Vertical") * transform.right + Input.GetAxis("Horizontal") * transform.forward;
-            deneme = moveVector.normalized;
+
         }
+
         characterControl.Move(moveVector * (playerSpeed * Time.deltaTime));
 
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) ||
+            Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+        {
+            isMove = true;
+            rigController.SetBool("Move", true);
+        }
+        else
+        {
+            rigController.SetBool("Move", false);
+            isMove = false;
+        }
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
@@ -63,11 +77,33 @@ public class PlayerController : MonoBehaviour
 
         characterControl.Move(velocity * Time.deltaTime);
 
+        if (isGrounded && Input.GetKeyDown(KeyCode.LeftShift) && isMove)
+        {
+            Debug.Log("xd");
+            rigController.SetBool("Run", true);
+            playerSpeed = 8;
+        }
+        if (isGrounded && Input.GetKeyUp(KeyCode.LeftShift) || isJump)
+        {
+            rigController.SetBool("Run", false);
+            playerSpeed = 5;
+        }
 
-        if (Input.GetButtonDown("Jump") && isGrounded && !isCrouch)
+        if (Input.GetButtonDown("Jump") && isGrounded &&!isJump)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
+        if (!isGrounded)
+        {
+            isJump = true;
+            rigController.SetBool("Jump", true);
+        }
+        else
+        {
+            rigController.SetBool("Jump", false);
+            isJump = false;
+        }
+
     }
 
     [ContextMenu("Save Weapon Pose")]
