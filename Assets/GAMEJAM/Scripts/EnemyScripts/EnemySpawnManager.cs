@@ -20,14 +20,11 @@ public class EnemySpawnManager : MonoBehaviour
     public float spawnTime;
     
     [SerializeField] private EnemyProbabilities[] enemies;
-
-    [SerializeField] private bool isNight = true;
     
     private double accumulatedWeights;
     private System.Random rand = new System.Random();
     
     [SerializeField] Vector3 spawnArea;
-    public GameObject player;
 
     private void Awake()
     {
@@ -36,8 +33,6 @@ public class EnemySpawnManager : MonoBehaviour
 
     private void Start()
     {
-        //player = GameObject.FindGameObjectWithTag("Player");
-        
         InvokeRepeating("SpawnRandomEnemy", 0f, spawnTime);
         
     }
@@ -52,28 +47,13 @@ public class EnemySpawnManager : MonoBehaviour
     private Vector3 GenerateRandomPosition()
     {
         var position = new Vector3();
-
-        //float f = Random.value > 0.5f ? -1f : 1f;
-        //if (Random.value > 0.0f)
-        //{
-        //    position.x = Random.Range(-spawnArea.x, spawnArea.x);
-        //    //position.z = spawnArea.z * f;
-        //    Debug.Log("1");
-        //}
-        //else
-        //{
-        //    position.z = Random.Range(-spawnArea.z, spawnArea.z);
-        //    //position.x = spawnArea.x * f;
-        //    Debug.Log("2");
-        //}
         
         position.x = Random.Range(-spawnArea.x,spawnArea.x);
+        position.y = spawnArea.y;
         position.z = Random.Range(-spawnArea.z,spawnArea.z);
 
         
         Vector3 result = new Vector3(position.x, position.y, position.z);
-
-        //position += (Vector3)player.transform.position;
         
         return result;
     }

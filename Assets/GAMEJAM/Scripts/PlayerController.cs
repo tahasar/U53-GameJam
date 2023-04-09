@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] public float playerSpeed = 10f;
     Vector3 moveVector;
+    Vector3 deneme;
     CharacterController characterControl;
 
     bool isCrouch;
@@ -35,8 +36,13 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
-        moveVector = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-        characterControl.Move(moveVector * playerSpeed * Time.deltaTime);
+        if(isGrounded)
+        {
+            moveVector = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+            deneme = moveVector.normalized;
+        }
+        characterControl.Move(moveVector * (playerSpeed * Time.deltaTime));
+
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 

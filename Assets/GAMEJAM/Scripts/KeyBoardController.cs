@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEditor.UI;
 using UnityEngine.UI;
 using UnityEditor;
 
@@ -24,8 +24,8 @@ public class KeyBoardController : MonoBehaviour
 
     #region Ammo
     [Header("Ammo")]
-    public Text currentAmmotext;
-    public Text carriedAmmotext;
+    public TextMeshProUGUI currentAmmotext;
+    public TextMeshProUGUI carriedAmmotext;
     public int currentAmmo = 12;
     public int maxAmmo = 12;
     public int carriedAmmo = 60;
@@ -175,7 +175,7 @@ public class KeyBoardController : MonoBehaviour
             if (raycastHit.transform.CompareTag("Enemy"))
             {
                 Enemy enemyHealth = raycastHit.transform.GetComponent<Enemy>();
-                enemyHealth.TakeDamage(200f);
+                enemyHealth.TakeDamage(damage);
             }
             Destroy(bulletClone, 3f);
         }

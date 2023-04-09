@@ -8,26 +8,20 @@ public class Enemy : MonoBehaviour
     
     [Header("Hedefler")]
     public GameObject target; // Oyuncu karakteri
-    
+    [Space]
     public float health;
     public float range;
     public float attackDamage;
     public Animator animator;
-    public string enemyName;
-    public string enemyInfo;
-    public float maxHealth;
-    public float speed;
     public Transform enemyTransform;
     public bool inRange;
-    public bool isDead = false;
     public Vector2 movement;
+    [Space]
     public AudioSource deathSound;
-    public Collider collider;
-    public GameObject characterForm;
 
-    public bool isAttacking;
     int attackRandomIndex;
     [HideInInspector] PlayerHealth playerHealth;
+    private GameManager gameManager;
 
     public NavMeshAgent enemy;
 
@@ -37,6 +31,7 @@ public class Enemy : MonoBehaviour
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
 
         attackRandomIndex = UnityEngine.Random.Range(0, 3);
+        gameManager = GameManager.instance;
     }
 
     public void Update()
@@ -46,19 +41,9 @@ public class Enemy : MonoBehaviour
         if(!inRange)
         {
             Move(movement);
-            animator.SetBool("isAttack", false);
         }
         else
             Attack();
-       
-        if (health <= 0)
-        {
-            //deathSound.Play();
-            //dropOnDestroy.Drop();
-            EnemyDead();
-            isDead = false;
-        }
-      
     }
 
     private void GetTargetDistance()        // Hedef ile düşman arasındaki mesafeyi ölçer.
@@ -72,18 +57,19 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            EnemyDead();
         }
     }
     void EnemyDead()
     {
+        gameManager.ScoreUpdate(1);
         Destroy(gameObject);
     }
 
     public void Attack()
     {
-        animator.SetInteger("Attack", attackRandomIndex);
-        animator.SetBool("isAttack", true);
+        animator.SetInteger("AttackType", attackRandomIndex);
+        animator.SetTrigger("Attack");
 
     }
     public void DamagePlayer() //AnimationEvent
