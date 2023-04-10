@@ -24,7 +24,7 @@ public class EnemySpawnManager : MonoBehaviour
     private double accumulatedWeights;
     private System.Random rand = new System.Random();
     
-    [SerializeField] Vector3 spawnArea;
+    public Vector3 spawnArea;
 
     private void Awake()
     {
@@ -47,7 +47,6 @@ public class EnemySpawnManager : MonoBehaviour
     private Vector3 GenerateRandomPosition()
     {
         var position = new Vector3();
-        
         position.x = Random.Range(-spawnArea.x,spawnArea.x);
         position.y = spawnArea.y;
         position.z = Random.Range(-spawnArea.z,spawnArea.z);
