@@ -12,6 +12,7 @@ TagManager:
   - CollectKey
   - CollectKeyBoard
   - CollectMouse
+  - escKey
   layers:
   - Default
   - TransparentFX
