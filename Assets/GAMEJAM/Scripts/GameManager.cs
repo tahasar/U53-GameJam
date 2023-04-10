@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -33,6 +34,14 @@ public class GameManager : MonoBehaviour
     public AudioClip music;
     private AudioSource audio;
 
+    #region menüler
+
+    public GameObject duraklatmaEkranı;
+    public GameObject oyunSonuEkranı;
+    public TextMeshProUGUI oyunSonuSkor;
+
+    #endregion
+
     public void Update()
     {
         codeBar.fillAmount += 2f / 100f * Time.deltaTime;
@@ -55,6 +64,13 @@ public class GameManager : MonoBehaviour
         }
         
 
+
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab))
+        {
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            duraklatmaEkranı.SetActive(true);
+        }
     }
 
     public void ScoreUpdate(int score)
@@ -69,5 +85,36 @@ public class GameManager : MonoBehaviour
     public void ScoreUpdate()
     {
         scoreCount.SetText($"Skor: {this.score}");
+    }
+
+    public void OyunaDevamEt()
+    {
+        Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked;
+        duraklatmaEkranı.SetActive(false);
+    }
+    
+    public void AnaMenuyeDon()
+    {
+        SceneManager.LoadScene("anaMenu");
+        Time.timeScale = 1;
+    }
+    
+    public void OyunSonuEkranı()
+    {
+        oyunSonuEkranı.SetActive(true);
+    }
+
+    public void Cikis()
+    {
+        Application.Quit();
+    }
+
+    public void GameOver()
+    {
+        Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None;
+        oyunSonuSkor.SetText($"{score}");
+        oyunSonuEkranı.SetActive(true);
     }
 }
