@@ -63,4 +63,4 @@ MonoBehaviour:
     Prefab: {fileID: 8211268824292466471, guid: 8cca7cc6e58113f4ba59dcb2919e5968, type: 3}
     chance: 100
     _weight: 0
-  spawnArea: {x: 49, y: 0, z: 49}
+  spawnArea: {x: 50, y: 0, z: 50}

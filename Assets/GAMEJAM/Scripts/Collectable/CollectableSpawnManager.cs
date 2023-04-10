@@ -50,8 +50,9 @@ public class CollectableSpawnManager : MonoBehaviour
     private Vector3 GenerateRandomPosition()
     {
         var position = new Vector3();
-        
-        position.x = Random.Range(-spawnArea.x,spawnArea.x);
+
+        position.x = Random.Range(-spawnArea.x, spawnArea.x);
+        position.y = spawnArea.y;
         position.z = Random.Range(-spawnArea.z,spawnArea.z);
 
         
