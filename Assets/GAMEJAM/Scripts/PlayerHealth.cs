@@ -44,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
         //Health++
         if (!isDead) currentHealth += 1f * Time.deltaTime;
 
-       /* #region POST-PROCESSÝNG
+       /* #region POST-PROCESSï¿½NG
         if (currentHealth <= 100f)
         {
             postPP.GetSetting<ChromaticAberration>().intensity.value = 0.5f;
@@ -71,7 +71,7 @@ public class PlayerHealth : MonoBehaviour
         }
         #endregion
 
-        #region MEDÝCÝNE
+        #region MEDï¿½Cï¿½NE
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Medicine"))
@@ -119,6 +119,7 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = 0;
         isDead = true;
+        GameManager.instance.GameOver();
     }
 
     void HealthBarFiller()
