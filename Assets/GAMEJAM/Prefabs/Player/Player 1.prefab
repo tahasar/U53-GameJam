@@ -13697,6 +13697,7 @@ MonoBehaviour:
   tusSesleri:
   - {fileID: 8300000, guid: 83ca29738b4f21a429da15d1616d2472, type: 3}
   - {fileID: 8300000, guid: c8972a5f75b48874ea3c45db9ac80087, type: 3}
+  reloadSesi: {fileID: 8300000, guid: d63075dac1f10444889424534b6e80da, type: 3}
   crossHair: {fileID: 0}
   colorCrosshair:
   - {fileID: 0}

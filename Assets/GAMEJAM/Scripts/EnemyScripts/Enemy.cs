@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public float health;
     public float range;
     public float attackDamage;
+    public int scoreReward;
     public bool inRange;
     public float turnSpeed;
     bool isDead = false;
@@ -99,7 +100,8 @@ public class Enemy : MonoBehaviour
     {
         audio.clip = enemyDeadSesleri[Random.Range(0, 3)];
         audio.Play();
-        gameManager.ScoreUpdate(1);
+        gameManager.score += scoreReward;
+        gameManager.ScoreUpdate();
         Destroy(gameObject, 2f);
         enemyAgent.updatePosition = false;
         enemyAgent.updateRotation = false;

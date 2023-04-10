@@ -43,6 +43,7 @@ public class KeyBoardController : MonoBehaviour
     public GameObject TrailBulletPos;
     public AudioClip[] tusSesleri;
     private AudioSource audio;
+    public AudioClip reloadSesi;
     #endregion
 
     /* #region Audio
@@ -213,6 +214,8 @@ public class KeyBoardController : MonoBehaviour
         if (!isReloading && currentAmmo != maxAmmo && carriedAmmo != 0)
         {
 
+            audio.clip = reloadSesi;
+            audio.Play(1);
             isShoot = false;
 
             if (!isAim)
