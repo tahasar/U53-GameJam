@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using Random = UnityEngine.Random;
 
 public class KeyBoardController : MonoBehaviour
 {
@@ -79,6 +80,9 @@ public class KeyBoardController : MonoBehaviour
     [SerializeField] private float maxForceTime;
     #endregion
 
+    public AudioClip[] tusSesleri;
+    private AudioSource audio;
+
     public void Start()
     {
         playerRig = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
@@ -90,6 +94,8 @@ public class KeyBoardController : MonoBehaviour
         {
             keys[i] = parent.GetChild(i);
         }
+
+        audio = GetComponent<AudioSource>();
     }
 
     public void Update()
@@ -141,6 +147,8 @@ public class KeyBoardController : MonoBehaviour
         {
             if (isShoot)
             {
+                audio.clip = tusSesleri[Random.Range(0, 2)];
+                audio.Play();
                 particleKey.Play();
                 if (keysCount > 0)
                 {

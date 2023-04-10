@@ -4853,6 +4853,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4031689987579381839}
     m_Modifications:
+    - target: {fileID: 1942215310059646482, guid: 253028b43c912b941af234b1d8e1a49e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2580358911084378012, guid: 253028b43c912b941af234b1d8e1a49e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4912,6 +4916,18 @@ PrefabInstance:
     - target: {fileID: 2919623860762635558, guid: 253028b43c912b941af234b1d8e1a49e, type: 3}
       propertyPath: m_Name
       value: collectKey
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919623860762635558, guid: 253028b43c912b941af234b1d8e1a49e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3443455134486356499, guid: 253028b43c912b941af234b1d8e1a49e, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859602898191860533, guid: 253028b43c912b941af234b1d8e1a49e, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 328853777065616081, guid: 253028b43c912b941af234b1d8e1a49e, type: 3}

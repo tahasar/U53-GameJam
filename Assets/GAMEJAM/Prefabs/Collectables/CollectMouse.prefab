@@ -4853,9 +4853,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7716400121029241451}
     m_Modifications:
+    - target: {fileID: 365226031538564457, guid: 86aa12d37878cc34694b8822c2457a1a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 528635483514414438, guid: 86aa12d37878cc34694b8822c2457a1a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 651722796511095964, guid: 86aa12d37878cc34694b8822c2457a1a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 872293835856491247, guid: 86aa12d37878cc34694b8822c2457a1a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8144356899573108776, guid: 86aa12d37878cc34694b8822c2457a1a, type: 3}
       propertyPath: m_Name
       value: Mouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 8144356899573108776, guid: 86aa12d37878cc34694b8822c2457a1a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8524077345668177693, guid: 86aa12d37878cc34694b8822c2457a1a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735699206061881886, guid: 86aa12d37878cc34694b8822c2457a1a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8812772474178423442, guid: 86aa12d37878cc34694b8822c2457a1a, type: 3}
       propertyPath: m_RootOrder
