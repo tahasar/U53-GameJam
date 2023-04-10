@@ -45,7 +45,8 @@ public class Enemy : MonoBehaviour
     #endregion
 
     public bool attackMode = false;
-    private Collider collider;
+    private CapsuleCollider collider;
+    private bool isRewarded = false;
 
     private void Start()
     {
@@ -54,7 +55,7 @@ public class Enemy : MonoBehaviour
         enemyAgent = GetComponent<NavMeshAgent>();
 
         audio = GetComponent<AudioSource>();
-        collider = GetComponent<Collider>();
+        collider = GetComponent<CapsuleCollider>();
 
         //attackRandomIndex = UnityEngine.Random.Range(0, 3);
         gameManager = GameManager.instance;
@@ -98,13 +99,19 @@ public class Enemy : MonoBehaviour
     }
     void EnemyDead()
     {
-        audio.clip = enemyDeadSesleri[Random.Range(0, 3)];
-        audio.Play();
-        gameManager.score += scoreReward;
-        gameManager.ScoreUpdate();
-        Destroy(gameObject, 2f);
-        enemyAgent.updatePosition = false;
-        enemyAgent.updateRotation = false;
+        if(!isRewarded)
+        {
+            isRewarded = true;
+            audio.clip = enemyDeadSesleri[Random.Range(0, 3)];
+            audio.Play();
+
+            collider.enabled = false;
+            gameManager.score += scoreReward;
+            gameManager.ScoreUpdate();
+            Destroy(gameObject, 2f);
+            enemyAgent.updatePosition = false;
+            enemyAgent.updateRotation = false;
+        }
     }
 
     public void Attack()
