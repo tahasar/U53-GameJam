@@ -13,6 +13,7 @@ TagManager:
   - CollectKeyBoard
   - CollectMouse
   - escKey
+  - Recoil
   layers:
   - Default
   - TransparentFX

@@ -558,11 +558,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &695858413 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2260268261020714875, guid: 0bcc5f5ad4ca59f4394b945d4644903b, type: 3}
-  m_PrefabInstance: {fileID: 894376556895518478}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &773617013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,10 +1197,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 986898036885886684, guid: 18e5d0be2c830684abd14ff78c0fde9e, type: 3}
-      propertyPath: spawnTime
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4136502327543007236, guid: 18e5d0be2c830684abd14ff78c0fde9e, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -1253,10 +1244,6 @@ PrefabInstance:
     - target: {fileID: 4136502327543007239, guid: 18e5d0be2c830684abd14ff78c0fde9e, type: 3}
       propertyPath: m_Name
       value: EnemyManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4136502327543007239, guid: 18e5d0be2c830684abd14ff78c0fde9e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18e5d0be2c830684abd14ff78c0fde9e, type: 3}
@@ -1570,10 +1557,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2068034036382642165, guid: b118189fa24d19f47aaf263ffe802470, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2068034036798912835, guid: b118189fa24d19f47aaf263ffe802470, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1621,10 +1604,6 @@ PrefabInstance:
     - target: {fileID: 2068034036798912892, guid: b118189fa24d19f47aaf263ffe802470, type: 3}
       propertyPath: m_Name
       value: Map
-      objectReference: {fileID: 0}
-    - target: {fileID: 2068034036798912892, guid: b118189fa24d19f47aaf263ffe802470, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b118189fa24d19f47aaf263ffe802470, type: 3}
@@ -1733,34 +1712,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 773617015}
-    - target: {fileID: 340959091907655519, guid: 0bcc5f5ad4ca59f4394b945d4644903b, type: 3}
-      propertyPath: jumpHeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 737114607527003108, guid: 0bcc5f5ad4ca59f4394b945d4644903b, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e20f503514323ff4e9f692aeb354d1f3, type: 2}
-    - target: {fileID: 1328897318571000134, guid: 0bcc5f5ad4ca59f4394b945d4644903b, type: 3}
-      propertyPath: escMat
-      value: 
-      objectReference: {fileID: 2100000, guid: e20f503514323ff4e9f692aeb354d1f3, type: 2}
-    - target: {fileID: 1328897318571000134, guid: 0bcc5f5ad4ca59f4394b945d4644903b, type: 3}
-      propertyPath: matESC
-      value: 
-      objectReference: {fileID: 695858413}
     - target: {fileID: 1328897318571000134, guid: 0bcc5f5ad4ca59f4394b945d4644903b, type: 3}
       propertyPath: crossHair
       value: 
       objectReference: {fileID: 107743614}
-    - target: {fileID: 1328897318571000134, guid: 0bcc5f5ad4ca59f4394b945d4644903b, type: 3}
-      propertyPath: bloodEffect
-      value: 
-      objectReference: {fileID: 1000013169864706, guid: e5a3d6da48298a0458c1990f58c27069, type: 3}
-    - target: {fileID: 1328897318571000134, guid: 0bcc5f5ad4ca59f4394b945d4644903b, type: 3}
-      propertyPath: bulletEffect
-      value: 
-      objectReference: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
     - target: {fileID: 1328897318571000134, guid: 0bcc5f5ad4ca59f4394b945d4644903b, type: 3}
       propertyPath: carriedAmmotext
       value: 
@@ -1833,10 +1788,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7572369335077471867, guid: 0bcc5f5ad4ca59f4394b945d4644903b, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0bcc5f5ad4ca59f4394b945d4644903b, type: 3}
 --- !u!1001 &6243710551205311632
@@ -1849,14 +1800,6 @@ PrefabInstance:
     - target: {fileID: 7276595933896241086, guid: af6c5a3f4cc7de849a77f7da6383db05, type: 3}
       propertyPath: m_Name
       value: CollectableManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7276595933896241086, guid: af6c5a3f4cc7de849a77f7da6383db05, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7516708089288973282, guid: af6c5a3f4cc7de849a77f7da6383db05, type: 3}
-      propertyPath: spawnTime
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8551448885247125895, guid: af6c5a3f4cc7de849a77f7da6383db05, type: 3}
       propertyPath: m_RootOrder

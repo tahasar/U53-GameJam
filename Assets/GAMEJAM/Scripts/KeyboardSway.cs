@@ -4,21 +4,40 @@ using UnityEngine;
 
 public class KeyboardSway : MonoBehaviour
 {
-    [SerializeField] private float smooth;
-    [SerializeField] private float swayMultiplier;
+    Vector3 currentRotation, targetRotation, targetPosition, currentPosition, initialGunPosition;
+    public Transform cam;
+
+    [SerializeField] float recoilX;
+    [SerializeField] float recoilY;
+    [SerializeField] float recoilZ;
+    [SerializeField] float aimRecoilX;
+    [SerializeField] float aimRecoilY;
+    [SerializeField] float aimRecoilZ;
+
+
+    public float snappiness, returnAmount;
+
+    public void Start()
+    {
+        initialGunPosition = transform.localPosition;
+    }
 
     public void Update()
     {
+        
 
-        float mouseX = Input.GetAxisRaw("Mouse X") * swayMultiplier;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * swayMultiplier;
-
-        Quaternion rotationX = Quaternion.AngleAxis(-mouseY, Vector3.right);
-        Quaternion rotationY = Quaternion.AngleAxis(mouseX, Vector3.up);
-
-        Quaternion targetRotation = rotationX * rotationY;
-
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, smooth * Time.deltaTime);
+        targetRotation = Vector3.Lerp(targetRotation, Vector3.zero, returnAmount * Time.deltaTime);
+        currentRotation = Vector3.Slerp(currentRotation, targetRotation, snappiness * Time.fixedDeltaTime);
+        transform.localRotation = Quaternion.Euler(currentRotation);
     }
+
+    public void Recoil()
+    {
+
+       targetRotation += new Vector3(recoilX, UnityEngine.Random.Range(-recoilY, recoilY), UnityEngine.Random.Range(-recoilZ, recoilZ));
+
+
+    }
+
 
 }

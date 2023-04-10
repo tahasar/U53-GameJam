@@ -79,10 +79,12 @@ public class KeyBoardController : MonoBehaviour
     [SerializeField] private float maxForceTime;
     #endregion
 
+    [HideInInspector] KeyboardSway recoilCam;
+
     public void Start()
     {
         playerRig = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-
+        recoilCam = GameObject.FindGameObjectWithTag("Recoil").GetComponent<KeyboardSway>();
         crossHair.SetActive(true);
         keys = new Transform[parent.childCount];
         keysCount = keys.Length;
@@ -154,7 +156,7 @@ public class KeyBoardController : MonoBehaviour
 
                 //MuzzleFlash.SetActive(true);
                 StartCoroutine(KeyLight(0.2f));
-               
+                recoilCam.Recoil();
                 ShootRay();
 
                 if (isAim && shootRay)
@@ -211,7 +213,7 @@ public class KeyBoardController : MonoBehaviour
             {
                bulletHoleClone= Instantiate(bulletHoleEffect, raycastHit.point, transform.rotation);
             }
-            Destroy(bulletClone, 3f); Destroy(bloodClone, 2f); Destroy(bulletHoleEffect, 2f);
+            Destroy(bulletClone, 3f); Destroy(bloodClone, 2f); Destroy(bulletHoleClone, 2f);
 
         }
     }
