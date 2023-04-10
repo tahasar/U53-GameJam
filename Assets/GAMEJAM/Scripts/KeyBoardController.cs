@@ -211,8 +211,7 @@ public class KeyBoardController : MonoBehaviour
             {
                bulletHoleClone= Instantiate(bulletHoleEffect, raycastHit.point, transform.rotation);
             }
-            Destroy(bulletClone, 3f); Destroy(bloodClone, 2f); Destroy(bulletHoleEffect, 2f);
-
+            Destroy(bulletClone, 3f); Destroy(bloodClone, 2f); Destroy(bulletHoleClone, 2f);
         }
     }
 

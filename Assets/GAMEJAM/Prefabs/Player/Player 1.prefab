@@ -2814,7 +2814,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cbbc5c3696b23b1469d9a167cd6cfc07, type: 2}
+  - {fileID: 2100000, guid: e20f503514323ff4e9f692aeb354d1f3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13389,7 +13389,7 @@ MonoBehaviour:
   ShootPoint: {fileID: 5886640211271106509}
   range: 100
   rateOffire: 0.2
-  escMat: {fileID: 0}
+  escMat: {fileID: 2100000, guid: e20f503514323ff4e9f692aeb354d1f3, type: 2}
   isAim: 0
   currentAmmotext: {fileID: 0}
   carriedAmmotext: {fileID: 0}
@@ -13398,7 +13398,8 @@ MonoBehaviour:
   carriedAmmo: 105
   isReloading: 0
   isShoot: 1
-  bloodEffect: {fileID: 0}
+  bloodEffect: {fileID: 1000013169864706, guid: e5a3d6da48298a0458c1990f58c27069, type: 3}
+  bulletHoleEffect: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
   Bullettrail: {fileID: 7165683624682292878, guid: 56fd7d6899b87fd47bf4464628670c5b, type: 3}
   TrailBulletPos: {fileID: 1328897320482119049}
   crossHair: {fileID: 0}
@@ -15419,7 +15420,7 @@ MonoBehaviour:
     m_Bits: 8
   groundDistance: 0.3
   gravity: -13.61
-  jumpHeight: 5
+  jumpHeight: 1
 --- !u!114 &340959091857006501
 MonoBehaviour:
   m_ObjectHideFlags: 0
