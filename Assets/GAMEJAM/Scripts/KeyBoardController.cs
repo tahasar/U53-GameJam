@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using UnityEngine.Video;
 using Random = UnityEngine.Random;
 
 public class KeyBoardController : MonoBehaviour
@@ -81,6 +82,7 @@ public class KeyBoardController : MonoBehaviour
     #endregion
 
     public AudioClip[] tusSesleri;
+    public AudioClip reloadSesi;
     private AudioSource audio;
 
     public void Start()
@@ -227,7 +229,8 @@ public class KeyBoardController : MonoBehaviour
     {
         if (!isReloading && currentAmmo != maxAmmo && carriedAmmo != 0)
         {
-
+            audio.clip = reloadSesi;
+            audio.Play();
             isShoot = false;
 
             if (!isAim)
