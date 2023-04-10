@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  health: 150
+  health: 300
   range: 2
   attackDamage: 45
   scoreReward: 5

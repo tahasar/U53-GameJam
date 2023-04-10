@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfbee92dc1cb76443b89c357b2c35bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 7
+  spawnTime: 3
   enemies:
   - Name: Gri  KeyHunter
     Prefab: {fileID: 8211268824292466471, guid: 8cca7cc6e58113f4ba59dcb2919e5968, type: 3}
@@ -69,6 +69,6 @@ MonoBehaviour:
     _weight: 0
   - Name: "K\u0131rm\u0131z\u0131 KeyHunter"
     Prefab: {fileID: 8211268824292466471, guid: 0e563a7184af2b64d92e4d6eedb6ff6f, type: 3}
-    chance: 10
+    chance: 20
     _weight: 0
   spawnArea: {x: 49, y: 0, z: 49}

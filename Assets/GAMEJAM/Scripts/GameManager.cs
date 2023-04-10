@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     private float fillAmount = 0f;
     public bool brokenDirection = false;
     public bool brokenRotate = false;
+    public AudioClip music;
+    private AudioSource audio;
 
     public void Update()
     {
