@@ -25,5 +25,9 @@ public class butonlar : MonoBehaviour
         Application.OpenURL("https://www.linkedin.com/in/hsynyldrm/");
     }
 
+    public void haticeLink()
+    {
+        Application.OpenURL("https://www.linkedin.com/in/hatice-altunbay-300218170");
+    }
 
 }
