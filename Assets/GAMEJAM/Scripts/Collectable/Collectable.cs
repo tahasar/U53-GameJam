@@ -13,7 +13,6 @@ public class Collectable : MonoBehaviour
 
     [HideInInspector] KeyBoardController keyBoard;
     [HideInInspector] PlayerRotate rotateFix;
-
     [SerializeField] private ScaleData[] scaleDatas;
     private int index;
 
@@ -45,10 +44,13 @@ public class Collectable : MonoBehaviour
             {
                 gameManager.brokenRotate = false;
             }
-                if (gameObject.CompareTag("CollectKeyBoard"))
+            if (gameObject.CompareTag("CollectKeyBoard"))
             {
                 keyBoard.KeyBoardFix();
+                keyBoard.carriedAmmo += 103 - keyBoard.keysCount;
+                keyBoard.keysCount = 103;
             }
+
 
             gameManager.ScoreUpdate(scoreReward);
         }

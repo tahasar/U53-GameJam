@@ -39,7 +39,7 @@ public class KeyBoardController : MonoBehaviour
 
     #region Effect
     [Header("Effect")]
-    //public GameObject MuzzleFlash;
+    public ParticleSystem muzzleFlash;
     public GameObject bloodEffect;
     GameObject bloodClone;
     public GameObject bulletHoleEffect;
@@ -56,11 +56,6 @@ public class KeyBoardController : MonoBehaviour
      public AudioClip reloadAC;
      #endregion*/
 
-    /* #region Force
-     [Header("Force")]
-     [SerializeField] private float maxForce;
-     [SerializeField] private float maxForceTime;
-     #endregion*/
 
     [Header("CROSSHAiR")]
     public GameObject crossHair;
@@ -68,7 +63,7 @@ public class KeyBoardController : MonoBehaviour
 
     [Header("KEYS")]
     Transform[] keys;
-    int keysCount;
+    public int keysCount;
     public Transform parent;
     public GameObject keyParticle;
     public ParticleSystem particleKey;
@@ -148,13 +143,13 @@ public class KeyBoardController : MonoBehaviour
                 {
                     keys[keysCount - 1].gameObject.SetActive(false);
                     keysCount--;
-                    carriedAmmo = keysCount;
+                    Debug.Log(keysCount);
                     currentAmmo--;
                 }
                 nextFire = Time.time + rateOffire;
                 nextFire = 0;
 
-                //MuzzleFlash.SetActive(true);
+                muzzleFlash.Play();
                 StartCoroutine(KeyLight(0.2f));
                 recoilCam.Recoil();
                 ShootRay();
@@ -178,11 +173,10 @@ public class KeyBoardController : MonoBehaviour
     private void ShootRay()
     {
 
-        //StartCoroutine(GunSoundAndMuzzleflash());
         if (Physics.Raycast(ShootPoint.position, ShootPoint.forward, out raycastHit, range))
         {
             bulletClone = Instantiate(bulletPrefab, TrailBulletPos.transform.position, TrailBulletPos.transform.rotation);
-           
+
             Rigidbody rb = bulletClone.GetComponent<Rigidbody>();
             rb.AddForce(ShootPoint.forward * shootForce, ForceMode.Impulse);
 
@@ -211,7 +205,7 @@ public class KeyBoardController : MonoBehaviour
             }
             else
             {
-               bulletHoleClone= Instantiate(bulletHoleEffect, raycastHit.point, transform.rotation);
+                bulletHoleClone = Instantiate(bulletHoleEffect, raycastHit.point, transform.rotation);
             }
             Destroy(bulletClone, 3f); Destroy(bloodClone, 2f); Destroy(bulletHoleClone, 2f);
 
@@ -263,7 +257,7 @@ public class KeyBoardController : MonoBehaviour
         }
     }
 
-    private void UpdateAmmoUI()
+    public void UpdateAmmoUI()
     {
         currentAmmotext.text = currentAmmo.ToString();
         carriedAmmotext.text = carriedAmmo.ToString();
@@ -292,15 +286,6 @@ public class KeyBoardController : MonoBehaviour
         }
         Trail.transform.position = Hit.point;
     }
-
-    /* IEnumerator GunSoundAndMuzzleflash()
-     private void Shoot()
-     {
-         gunAS.PlayOneShot(shootAC);
-         yield return new WaitForSeconds(0.25f);
-         MuzzleFlash.SetActive(false);
-     }*/
-
 
     private void CrossHairColor()
     {
@@ -335,20 +320,20 @@ public class KeyBoardController : MonoBehaviour
 
     }
 
-     IEnumerator KeyLight(float time)
+    IEnumerator KeyLight(float time)
     {
         currentEmission = escMat.GetColor("_EmissionColor");
-        newEmissionIntensity = currentEmission.maxColorComponent + 10f;
+        newEmissionIntensity = currentEmission.maxColorComponent + 20f;
         Color newEmissionColor = currentEmission * (newEmissionIntensity / currentEmission.maxColorComponent);
         escMat.SetColor("_EmissionColor", newEmissionColor);
         Debug.Log("xd");
 
         yield return new WaitForSeconds(time);
         currentEmission = escMat.GetColor("_EmissionColor");
-        newEmissionIntensity = currentEmission.maxColorComponent -10f;
+        newEmissionIntensity = currentEmission.maxColorComponent - 20f;
         newEmissionColor = currentEmission * (newEmissionIntensity / currentEmission.maxColorComponent);
         escMat.SetColor("_EmissionColor", newEmissionColor);
 
     }
-
+  
 }

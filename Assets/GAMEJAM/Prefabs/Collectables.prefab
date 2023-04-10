@@ -48,14 +48,14 @@ MonoBehaviour:
   codes:
   - Name: Code1
     Prefab: {fileID: 2793694578555250482, guid: 99bbba025b9ccbf4aa9a43a6a7bbba19, type: 3}
-    chance: 100
+    chance: 50
     _weight: 0
   - Name: Code2
     Prefab: {fileID: 4031689987579381837, guid: 4c84cdbe5fc19ef45ab68dd9a37e3a43, type: 3}
-    chance: 100
+    chance: 50
     _weight: 0
   - Name: Code3
     Prefab: {fileID: 7716400121029241453, guid: 557cbb957b0f5d444a9023ffe6b5f26b, type: 3}
-    chance: 100
+    chance: 50
     _weight: 0
   spawnArea: {x: 49, y: 0, z: 49}
