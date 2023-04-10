@@ -335,7 +335,7 @@ public class KeyBoardController : MonoBehaviour
         newEmissionIntensity = currentEmission.maxColorComponent + 20f;
         Color newEmissionColor = currentEmission * (newEmissionIntensity / currentEmission.maxColorComponent);
         escMat.SetColor("_EmissionColor", newEmissionColor);
-        Debug.Log("xd");
+        Debug.Log("x2d");
 
         yield return new WaitForSeconds(time);
         currentEmission = escMat.GetColor("_EmissionColor");
