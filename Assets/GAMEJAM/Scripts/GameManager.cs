@@ -63,4 +63,9 @@ public class GameManager : MonoBehaviour
         codeBar.fillAmount -= 2/4f;
 
     }
+    
+    public void ScoreUpdate()
+    {
+        scoreCount.SetText($"Skor: {this.score}");
+    }
 }

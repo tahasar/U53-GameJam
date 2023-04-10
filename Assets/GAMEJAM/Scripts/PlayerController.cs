@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,12 +31,16 @@ public class PlayerController : MonoBehaviour
     public float gravity;
     public float jumpHeight;
 
+    public AudioClip[] jumpSounds;
+    private AudioSource audio;
+
     [HideInInspector] GameManager gameManager;
 
     public void Start()
     {
         characterControl = GetComponent<CharacterController>();
         gameManager = GameManager.instance;
+        audio = GetComponent<AudioSource>();
     }
 
 
@@ -44,15 +49,22 @@ public class PlayerController : MonoBehaviour
         if (!gameManager.brokenDirection && isGrounded)
         {
             moveVector = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-
+        }
+        else if (isGrounded && gameManager.brokenDirection)
+        {
+            moveVector = Input.GetAxis("Vertical") * transform.right + Input.GetAxis("Horizontal") * transform.forward;
         }
         else if (gameManager.brokenDirection && isGrounded)
         {
             moveVector = Input.GetAxis("Vertical") * transform.right + Input.GetAxis("Horizontal") * transform.forward;
-
         }
 
         characterControl.Move(moveVector * (playerSpeed * Time.deltaTime));
+
+        //if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)|| Input.GetKey(KeyCode.W))
+        //{
+        //    Debug.Log("araba");
+        //}
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) ||
             Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
@@ -91,6 +103,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded &&!isJump)
         {
+            audio.clip = jumpSounds[Random.Range(0, 3)];
+            audio.Play();
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
         if (!isGrounded)

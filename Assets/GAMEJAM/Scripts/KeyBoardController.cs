@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using UnityEngine.Video;
+using Random = UnityEngine.Random;
 
 public class KeyBoardController : MonoBehaviour
 {
@@ -75,6 +77,9 @@ public class KeyBoardController : MonoBehaviour
     #endregion
 
     [HideInInspector] KeyboardSway recoilCam;
+    public AudioClip[] tusSesleri;
+    public AudioClip reloadSesi;
+    private AudioSource audio;
 
     public void Start()
     {
@@ -87,6 +92,8 @@ public class KeyBoardController : MonoBehaviour
         {
             keys[i] = parent.GetChild(i);
         }
+
+        audio = GetComponent<AudioSource>();
     }
 
     public void Update()
@@ -138,6 +145,8 @@ public class KeyBoardController : MonoBehaviour
         {
             if (isShoot)
             {
+                audio.clip = tusSesleri[Random.Range(0, 2)];
+                audio.Play();
                 particleKey.Play();
                 if (keysCount > 0)
                 {
@@ -208,7 +217,6 @@ public class KeyBoardController : MonoBehaviour
                 bulletHoleClone = Instantiate(bulletHoleEffect, raycastHit.point, transform.rotation);
             }
             Destroy(bulletClone, 3f); Destroy(bloodClone, 2f); Destroy(bulletHoleClone, 2f);
-
         }
     }
 
@@ -216,7 +224,8 @@ public class KeyBoardController : MonoBehaviour
     {
         if (!isReloading && currentAmmo != maxAmmo && carriedAmmo != 0)
         {
-
+            audio.clip = reloadSesi;
+            audio.Play();
             isShoot = false;
 
             if (!isAim)

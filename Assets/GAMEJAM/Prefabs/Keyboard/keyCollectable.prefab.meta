@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/GAMEJAM/Prefabs/Keyboard/keyCollectable.prefab.meta
 guid: 318c80234f184e444a7e4de39192bf0a
+========
+guid: 0e563a7184af2b64d92e4d6eedb6ff6f
+>>>>>>>> tahanınYoluYoldur:Assets/GAMEJAM/Prefabs/Enemies/Kırmızı KeyHunter.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
