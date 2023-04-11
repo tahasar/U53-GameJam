@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyboardSway : MonoBehaviour
+public class KeyboardRecoil : MonoBehaviour
 {
     Vector3 currentRotation, targetRotation, targetPosition, currentPosition, initialGunPosition;
     public Transform cam;

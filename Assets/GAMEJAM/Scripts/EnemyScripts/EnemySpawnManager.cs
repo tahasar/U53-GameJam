@@ -18,43 +18,34 @@ public class EnemyProbabilities
 public class EnemySpawnManager : MonoBehaviour
 {
     public float spawnTime;
-    
+    public Vector3 spawnAreaCenter;
+    public float spawnAreaRadius = 5f;
+
     [SerializeField] private EnemyProbabilities[] enemies;
     
     private double accumulatedWeights;
     private System.Random rand = new System.Random();
     
-    public Vector3 spawnArea;
-
     private void Awake()
     {
         CalculateWeights();
     }
 
-    private void Start()
+    void Start()
     {
         InvokeRepeating("SpawnRandomEnemy", 0f, spawnTime);
-        
     }
 
     private void SpawnRandomEnemy()
     {
         EnemyProbabilities randomEnemy = enemies[GetRandomEnemyIndex()];
+      
+        Vector3 spawnPoint = Random.insideUnitSphere * spawnAreaRadius + spawnAreaCenter;
+        spawnPoint.y = 0f;
+       
+        Instantiate(randomEnemy.Prefab, spawnPoint, Quaternion.identity);
 
-        Instantiate(randomEnemy.Prefab, GenerateRandomPosition(), Quaternion.identity, transform);
-    }
-
-    private Vector3 GenerateRandomPosition()
-    {
-        var position = new Vector3();
-        position.x = Random.Range(-spawnArea.x,spawnArea.x);
-        position.y = spawnArea.y;
-        position.z = Random.Range(-spawnArea.z,spawnArea.z);
-
-        
-        Vector3 result = new Vector3(position.x, position.y, position.z);
-        
-        return result;
+        //Instantiate(randomEnemy.Prefab, GenerateRandomPosition(), Quaternion.identity, transform);
     }
 
     private int GetRandomEnemyIndex()
@@ -79,4 +70,16 @@ public class EnemySpawnManager : MonoBehaviour
             enemy._weight = accumulatedWeights;
         }
     }
+    /*private Vector3 GenerateRandomPosition()
+   {
+       var position = new Vector3();
+       position.x = Random.Range(-spawnArea.x,spawnArea.x);
+       position.y = spawnArea.y;
+       position.z = Random.Range(-spawnArea.z,spawnArea.z);
+
+
+       Vector3 result = new Vector3(position.x, position.y, position.z);
+
+       return result;
+   }*/
 }

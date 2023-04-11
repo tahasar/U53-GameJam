@@ -10,9 +10,12 @@ using Random = UnityEngine.Random;
 public class KeyBoardController : MonoBehaviour
 {
     [HideInInspector] PlayerController playerRig;
-    RaycastHit raycastHit;
 
+    [HideInInspector] KeyboardRecoil recoilCam;
+
+    #region Shoot&Bullet
     [Header("SHOOT")]
+    RaycastHit raycastHit;
     public GameObject bulletPrefab;
     GameObject bulletClone;
     public float shootForce = 100f;
@@ -22,10 +25,10 @@ public class KeyBoardController : MonoBehaviour
     [SerializeField] float rateOffire;
     float nextFire = 0f;
     public Material escMat;
-    public bool isAim = false;
-
     Color currentEmission;
     float newEmissionIntensity;
+    public bool isAim = false;
+    #endregion
 
     #region Ammo
     [Header("Ammo")]
@@ -50,25 +53,20 @@ public class KeyBoardController : MonoBehaviour
     public GameObject TrailBulletPos;
     #endregion
 
-    /* #region Audio
-     [Header("Audio")]
-     public AudioSource gunAS;
-     public AudioClip shootAC;
-     public AudioSource reloadAS;
-     public AudioClip reloadAC;
-     #endregion*/
-
-
+    #region CrossHair
     [Header("CROSSHAiR")]
     public GameObject crossHair;
     public Image[] colorCrosshair;
+    #endregion
 
+    #region Keys
     [Header("KEYS")]
     Transform[] keys;
     public int keysCount;
     public Transform parent;
     public GameObject keyParticle;
     public ParticleSystem particleKey;
+    #endregion
 
     #region Force
     [Header("Force")]
@@ -76,15 +74,22 @@ public class KeyBoardController : MonoBehaviour
     [SerializeField] private float maxForceTime;
     #endregion
 
-    [HideInInspector] KeyboardSway recoilCam;
+
+    #region Audıo
+    [Header("Audio")]
     public AudioClip[] tusSesleri;
     public AudioClip reloadSesi;
     private AudioSource audio;
+    #endregion
+
+    Vector3 mousePosition;
+    Ray ray;
+
 
     public void Start()
     {
         playerRig = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        recoilCam = GameObject.FindGameObjectWithTag("Recoil").GetComponent<KeyboardSway>();
+        recoilCam = GameObject.FindGameObjectWithTag("Recoil").GetComponent<KeyboardRecoil>();
         crossHair.SetActive(true);
         keys = new Transform[parent.childCount];
         keysCount = keys.Length;
@@ -94,6 +99,8 @@ public class KeyBoardController : MonoBehaviour
         }
 
         audio = GetComponent<AudioSource>();
+
+        
     }
 
     public void Update()
@@ -152,7 +159,6 @@ public class KeyBoardController : MonoBehaviour
                 {
                     keys[keysCount - 1].gameObject.SetActive(false);
                     keysCount--;
-                    Debug.Log(keysCount);
                     currentAmmo--;
                 }
                 nextFire = Time.time + rateOffire;
@@ -181,8 +187,9 @@ public class KeyBoardController : MonoBehaviour
 
     private void ShootRay()
     {
-
-        if (Physics.Raycast(ShootPoint.position, ShootPoint.forward, out raycastHit, range))
+        ray = Camera.main.ScreenPointToRay(mousePosition);
+        mousePosition = Input.mousePosition;
+        if (Physics.Raycast(ray , out raycastHit))
         {
             bulletClone = Instantiate(bulletPrefab, TrailBulletPos.transform.position, TrailBulletPos.transform.rotation);
 
@@ -190,8 +197,9 @@ public class KeyBoardController : MonoBehaviour
             rb.AddForce(ShootPoint.forward * shootForce, ForceMode.Impulse);
 
             shootRay = true;
-            if (raycastHit.transform.CompareTag("Enemy"))
+            if (raycastHit.transform.CompareTag("Head"))
             {
+                damage = 100f;
                 Enemy enemy = raycastHit.collider.GetComponentInParent<Enemy>();
                 enemy.TakeDamage(damage);
                 bloodClone = Instantiate(bloodEffect, raycastHit.point, transform.rotation);
@@ -210,17 +218,65 @@ public class KeyBoardController : MonoBehaviour
 
                     enemy.TriggerRagdoll(force, raycastHit.point);
                 }
-
+                Destroy(bulletClone, 0.1f);
             }
-            else
+            if (raycastHit.transform.CompareTag("TopBody"))
             {
-                bulletHoleClone = Instantiate(bulletHoleEffect, raycastHit.point, transform.rotation);
+                damage = 50f;
+                Enemy enemy = raycastHit.collider.GetComponentInParent<Enemy>();
+                enemy.TakeDamage(damage);
+                bloodClone = Instantiate(bloodEffect, raycastHit.point, transform.rotation);
+                if (enemy.health <= 0)
+                {
+                    #region RagdollForce
+                    float mouseButtonDown = Time.time - 1;
+                    float forcePercentage = mouseButtonDown / maxForceTime;
+                    float forceMagnitude = Mathf.Lerp(1, maxForce, forcePercentage);
+
+                    Vector3 forceDirection = enemy.transform.position - transform.position;
+                    forceDirection.y = 1;
+                    forceDirection.Normalize();
+                    Vector3 force = forceMagnitude * forceDirection;
+                    #endregion
+
+                    enemy.TriggerRagdoll(force, raycastHit.point);
+                }
+                Destroy(bulletClone, 0.1f); 
             }
-            Destroy(bulletClone, 3f); Destroy(bloodClone, 2f); Destroy(bulletHoleClone, 2f);
+            if (raycastHit.transform.CompareTag("LowBody"))
+            {
+                damage = 25f;
+                Enemy enemy = raycastHit.collider.GetComponentInParent<Enemy>();
+                enemy.TakeDamage(damage);
+                bloodClone = Instantiate(bloodEffect, raycastHit.point, transform.rotation);
+                if (enemy.health <= 0)
+                {
+                    #region RagdollForce
+                    float mouseButtonDown = Time.time - 1;
+                    float forcePercentage = mouseButtonDown / maxForceTime;
+                    float forceMagnitude = Mathf.Lerp(1, maxForce, forcePercentage);
+
+                    Vector3 forceDirection = enemy.transform.position - transform.position;
+                    forceDirection.y = 1;
+                    forceDirection.Normalize();
+                    Vector3 force = forceMagnitude * forceDirection;
+                    #endregion
+
+                    enemy.TriggerRagdoll(force, raycastHit.point);
+                }
+                Destroy(bulletClone, 0.1f);
+            }
+            else if(raycastHit.transform.CompareTag("Untagged"))
+            {
+
+                bulletHoleClone = Instantiate(bulletHoleEffect, raycastHit.point, transform.rotation);
+                Destroy(bulletClone, 2f);
+            }
+            Destroy(bloodClone, 2f); Destroy(bulletHoleClone, 2f);
         }
     }
 
-    private void Reload()
+    public void Reload()
     {
         if (!isReloading && currentAmmo != maxAmmo && carriedAmmo != 0)
         {
@@ -335,7 +391,6 @@ public class KeyBoardController : MonoBehaviour
         newEmissionIntensity = currentEmission.maxColorComponent + 20f;
         Color newEmissionColor = currentEmission * (newEmissionIntensity / currentEmission.maxColorComponent);
         escMat.SetColor("_EmissionColor", newEmissionColor);
-        Debug.Log("x2d");
 
         yield return new WaitForSeconds(time);
         currentEmission = escMat.GetColor("_EmissionColor");

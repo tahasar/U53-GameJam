@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     public bool isJump;
     public bool isMove;
+    public bool isRun;
     public Transform groundCheck;
     public LayerMask groundMask;
     public float groundDistance;
@@ -94,11 +95,13 @@ public class PlayerController : MonoBehaviour
             Debug.Log("xd");
             rigController.SetBool("Run", true);
             playerSpeed = 8;
+            isRun = true;
         }
         if (isGrounded && Input.GetKeyUp(KeyCode.LeftShift) || isJump)
         {
             rigController.SetBool("Run", false);
             playerSpeed = 5;
+            isRun = false;
         }
 
         if (Input.GetButtonDown("Jump") && isGrounded &&!isJump)

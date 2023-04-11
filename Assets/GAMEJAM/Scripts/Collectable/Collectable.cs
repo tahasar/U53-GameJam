@@ -46,6 +46,7 @@ public class Collectable : MonoBehaviour
             }
             if (gameObject.CompareTag("CollectKeyBoard"))
             {
+                keyBoard.Reload();
                 keyBoard.KeyBoardFix();
                 keyBoard.carriedAmmo += 103 - keyBoard.keysCount;
                 keyBoard.keysCount = 103;
