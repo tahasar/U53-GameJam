@@ -5972,7 +5972,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   groundDistance: 0.3
-  gravity: -13.61
+  gravity: -9.94
   jumpHeight: 1
   jumpSounds:
   - {fileID: 8300000, guid: 45a4ffa6418f8a247819e235e2a27ff8, type: 3}

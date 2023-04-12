@@ -18,8 +18,7 @@ public class EnemyProbabilities
 public class EnemySpawnManager : MonoBehaviour
 {
     public float spawnTime;
-    public Vector3 spawnAreaCenter;
-    public float spawnAreaRadius = 5f;
+    CapsuleCollider colRadius;
 
     [SerializeField] private EnemyProbabilities[] enemies;
     
@@ -29,23 +28,23 @@ public class EnemySpawnManager : MonoBehaviour
     private void Awake()
     {
         CalculateWeights();
+       
     }
 
     void Start()
     {
         InvokeRepeating("SpawnRandomEnemy", 0f, spawnTime);
+        colRadius = GetComponent<CapsuleCollider>();
     }
 
     private void SpawnRandomEnemy()
     {
         EnemyProbabilities randomEnemy = enemies[GetRandomEnemyIndex()];
       
-        Vector3 spawnPoint = Random.insideUnitSphere * spawnAreaRadius + spawnAreaCenter;
+        Vector3 spawnPoint = Random.insideUnitSphere * colRadius.radius + transform.position;
         spawnPoint.y = 0f;
        
         Instantiate(randomEnemy.Prefab, spawnPoint, Quaternion.identity);
-
-        //Instantiate(randomEnemy.Prefab, GenerateRandomPosition(), Quaternion.identity, transform);
     }
 
     private int GetRandomEnemyIndex()
@@ -70,16 +69,4 @@ public class EnemySpawnManager : MonoBehaviour
             enemy._weight = accumulatedWeights;
         }
     }
-    /*private Vector3 GenerateRandomPosition()
-   {
-       var position = new Vector3();
-       position.x = Random.Range(-spawnArea.x,spawnArea.x);
-       position.y = spawnArea.y;
-       position.z = Random.Range(-spawnArea.z,spawnArea.z);
-
-
-       Vector3 result = new Vector3(position.x, position.y, position.z);
-
-       return result;
-   }*/
 }

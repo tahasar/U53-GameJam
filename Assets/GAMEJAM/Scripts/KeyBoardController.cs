@@ -25,8 +25,11 @@ public class KeyBoardController : MonoBehaviour
     [SerializeField] float rateOffire;
     float nextFire = 0f;
     public Material escMat;
+    public Material rMat;
     Color currentEmission;
+    Color currentEmissionReload;
     float newEmissionIntensity;
+    float newEmissionIntensityReload;
     public bool isAim = false;
     #endregion
 
@@ -100,7 +103,7 @@ public class KeyBoardController : MonoBehaviour
 
         audio = GetComponent<AudioSource>();
 
-        
+
     }
 
     public void Update()
@@ -143,6 +146,15 @@ public class KeyBoardController : MonoBehaviour
                 crossHair.SetActive(true);
             }
         }
+        #endregion
+
+        #region reload
+
+        if (currentAmmo < 5)
+        {
+            StartCoroutine(ReloadLight(1f));
+        }
+
         #endregion
     }
 
@@ -189,7 +201,7 @@ public class KeyBoardController : MonoBehaviour
     {
         ray = Camera.main.ScreenPointToRay(mousePosition);
         mousePosition = Input.mousePosition;
-        if (Physics.Raycast(ray , out raycastHit))
+        if (Physics.Raycast(ray, out raycastHit))
         {
             bulletClone = Instantiate(bulletPrefab, TrailBulletPos.transform.position, TrailBulletPos.transform.rotation);
 
@@ -241,7 +253,7 @@ public class KeyBoardController : MonoBehaviour
 
                     enemy.TriggerRagdoll(force, raycastHit.point);
                 }
-                Destroy(bulletClone, 0.1f); 
+                Destroy(bulletClone, 0.1f);
             }
             if (raycastHit.transform.CompareTag("LowBody"))
             {
@@ -266,7 +278,7 @@ public class KeyBoardController : MonoBehaviour
                 }
                 Destroy(bulletClone, 0.1f);
             }
-            else if(raycastHit.transform.CompareTag("Untagged"))
+            else if (raycastHit.transform.CompareTag("Untagged"))
             {
 
                 bulletHoleClone = Instantiate(bulletHoleEffect, raycastHit.point, transform.rotation);
@@ -399,5 +411,20 @@ public class KeyBoardController : MonoBehaviour
         escMat.SetColor("_EmissionColor", newEmissionColor);
 
     }
-  
+    IEnumerator ReloadLight(float time)
+    {
+
+        currentEmissionReload = rMat.GetColor("_EmissionColor");
+        newEmissionIntensityReload = currentEmission.maxColorComponent + 10f;
+        Color newEmissionColorReload = currentEmissionReload * (newEmissionIntensityReload / currentEmissionReload.maxColorComponent);
+        rMat.SetColor("_EmissionColor", newEmissionColorReload);
+
+        yield return new WaitForSeconds(time);
+        currentEmissionReload = rMat.GetColor("_EmissionColor");
+        newEmissionIntensityReload = currentEmission.maxColorComponent - 10f;
+        newEmissionColorReload = currentEmissionReload * (newEmissionIntensityReload / currentEmissionReload.maxColorComponent);
+        rMat.SetColor("_EmissionColor", newEmissionColorReload);
+    }
+
+
 }

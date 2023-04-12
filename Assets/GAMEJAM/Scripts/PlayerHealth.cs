@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
-
+using DG.Tweening;
 public class PlayerHealth : MonoBehaviour
 {
 
@@ -13,19 +13,21 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth = 400f;
     public Image healthBar;
     float lerpspeed;
-  /*  [Header("Medicine")]
-    public float medicineCount = 0f;
-    public Text medicineCountText;
-    public GameObject medicineHand;
 
-    RaycastHit hit;
-    [SerializeField] Transform Cam;
-    public PostProcessProfile postPP;
-    public GameObject shootPoint;
-  */
+    /*  [Header("Medicine")]
+      public float medicineCount = 0f;
+      public Text medicineCountText;
+      public GameObject medicineHand;
+
+      RaycastHit hit;
+      [SerializeField] Transform Cam;
+      public PostProcessProfile postPP;
+      public GameObject shootPoint;
+    */
     public float distance = 10f;
-
+    public Camera cam;
     public bool isDead = false;
+    public int vibrato;
 
     void Start()
     {
@@ -107,7 +109,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth > 0)
         {
             currentHealth -= damage;
-            //Cam.transform.DOPunchPosition(new Vector3(.5f, 0), 1, 10);
+           cam.transform.DOPunchPosition(new Vector3(.2f, 0), 0.5f,vibrato);
         }
         else
         {

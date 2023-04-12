@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
+
         if (!gameManager.brokenDirection && isGrounded)
         {
             moveVector = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
@@ -84,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded && velocity.y < 0)
         {
-            velocity.y = -15f;
+            velocity.y = gravity;
         }
         velocity.y += gravity * Time.deltaTime;
 

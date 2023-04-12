@@ -18,58 +18,41 @@ public class CollectableProbabilities
 public class CollectableSpawnManager : MonoBehaviour
 {
     public float spawnTime;
-    
-    [SerializeField] private CollectableProbabilities[] codes;
+     CapsuleCollider colRadius;
+
+    [SerializeField] private EnemyProbabilities[] collectables;
     
     private double accumulatedWeights;
     private System.Random rand = new System.Random();
     
-    [SerializeField] Vector3 spawnArea;
-
     private void Awake()
     {
         CalculateWeights();
     }
 
-    private void Start()
+    void Start()
     {
-        //player = GameObject.FindGameObjectWithTag("Player");
-        
-        InvokeRepeating("SpawnRandomCode", 0f, spawnTime);
-
+        InvokeRepeating("SpawnRandomEnemy", 0f, spawnTime);
+      colRadius = GetComponent<CapsuleCollider>();
     }
 
-    private void SpawnRandomCode()
+    private void SpawnRandomEnemy()
     {
-        CollectableProbabilities randomEnemy = codes[GetRandomCodeIndex()];
-
-        Instantiate(randomEnemy.Prefab, GenerateRandomPosition(), Quaternion.identity, transform);
-        
+        EnemyProbabilities randomEnemy = collectables[GetRandomEnemyIndex()];
+      
+        Vector3 spawnPoint = Random.insideUnitSphere * colRadius.radius + transform.position;
+        spawnPoint.y = 0f;
+       
+        Instantiate(randomEnemy.Prefab, spawnPoint, Quaternion.identity);
     }
 
-    private Vector3 GenerateRandomPosition()
-    {
-        var position = new Vector3();
-
-        position.x = Random.Range(-spawnArea.x, spawnArea.x);
-        position.y = spawnArea.y;
-        position.z = Random.Range(-spawnArea.z,spawnArea.z);
-
-        
-        Vector3 result = new Vector3(position.x, position.y, position.z);
-
-        //position += (Vector3)player.transform.position;
-        
-        return result;
-    }
-
-    private int GetRandomCodeIndex()
+    private int GetRandomEnemyIndex()
     {
         double r = rand.NextDouble() * accumulatedWeights;
 
-        for (int i = 0; i < codes.Length; i++)
+        for (int i = 0; i < collectables.Length; i++)
         {
-            if (codes[i]._weight >= r)
+            if (collectables[i]._weight >= r)
                 return i;
         }
 
@@ -79,10 +62,11 @@ public class CollectableSpawnManager : MonoBehaviour
     private void CalculateWeights()
     {
         accumulatedWeights = 0f;
-        foreach (CollectableProbabilities enemy in codes)
+        foreach (EnemyProbabilities enemy in collectables)
         {
             accumulatedWeights += enemy.chance;
             enemy._weight = accumulatedWeights;
         }
     }
+   
 }
