@@ -9,7 +9,7 @@ public class EnemyAnimatonEvent : MonoBehaviour
 
     public void Start()
     {
-        enemyAnimationEvent = GameObject.FindGameObjectWithTag("Enemy").GetComponentInParent<Enemy>();
+        enemyAnimationEvent = gameObject.GetComponentInParent<Enemy>();
     }
 
     void AttackDamage()

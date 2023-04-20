@@ -27,9 +27,12 @@ public class KeyBoardController : MonoBehaviour
     public Material escMat;
     public Material rMat;
     Color currentEmission;
-    Color currentEmissionReload;
+    //Color currentEmissionReload;
     float newEmissionIntensity;
-    float newEmissionIntensityReload;
+    //float newEmissionIntensityReload;
+    public Color onColor;
+    public Color offColor;
+    public Color baseColor;
     public bool isAim = false;
     #endregion
 
@@ -102,8 +105,6 @@ public class KeyBoardController : MonoBehaviour
         }
 
         audio = GetComponent<AudioSource>();
-
-
     }
 
     public void Update()
@@ -135,7 +136,6 @@ public class KeyBoardController : MonoBehaviour
             playerRig.rigController.SetBool("Aim", true);
             isAim = true;
             crossHair.SetActive(false);
-            Debug.Log("xd");
         }
         if (isAim)
         {
@@ -148,13 +148,16 @@ public class KeyBoardController : MonoBehaviour
         }
         #endregion
 
-        #region reload
+        #region ReloadLight
 
         if (currentAmmo < 5)
         {
-            StartCoroutine(ReloadLight(1f));
+            StartCoroutine(Blink(2f));
         }
-
+        else
+        {
+            rMat.SetColor("_EmissionColor", baseColor);
+        }
         #endregion
     }
 
@@ -302,8 +305,6 @@ public class KeyBoardController : MonoBehaviour
             }
             playerRig.rigController.Play("Reload");
 
-
-            //reloadAS.PlayOneShot(reloadAC);
             if (carriedAmmo <= 0) return;
 
             StartCoroutine(ReloadCountdown(1.5f));
@@ -411,20 +412,19 @@ public class KeyBoardController : MonoBehaviour
         escMat.SetColor("_EmissionColor", newEmissionColor);
 
     }
-    IEnumerator ReloadLight(float time)
+
+    IEnumerator Blink(float time)
     {
 
-        currentEmissionReload = rMat.GetColor("_EmissionColor");
-        newEmissionIntensityReload = currentEmission.maxColorComponent + 10f;
-        Color newEmissionColorReload = currentEmissionReload * (newEmissionIntensityReload / currentEmissionReload.maxColorComponent);
-        rMat.SetColor("_EmissionColor", newEmissionColorReload);
+        rMat.SetColor("_EmissionColor", onColor);
 
         yield return new WaitForSeconds(time);
-        currentEmissionReload = rMat.GetColor("_EmissionColor");
-        newEmissionIntensityReload = currentEmission.maxColorComponent - 10f;
-        newEmissionColorReload = currentEmissionReload * (newEmissionIntensityReload / currentEmissionReload.maxColorComponent);
-        rMat.SetColor("_EmissionColor", newEmissionColorReload);
-    }
 
+        rMat.SetColor("_EmissionColor", offColor);
+    
+
+
+
+    }
 
 }

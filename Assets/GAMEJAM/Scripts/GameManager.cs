@@ -10,9 +10,6 @@ public class GameManager : MonoBehaviour
     #region Singleton
 
     public static GameManager instance;
-   
-
-
     private void Awake()
     {
         if (instance != null)
@@ -34,7 +31,7 @@ public class GameManager : MonoBehaviour
     public AudioClip music;
     private AudioSource audio;
 
-    #region menüler
+    #region MENU
 
     public GameObject duraklatmaEkranı;
     public GameObject oyunSonuEkranı;
@@ -76,7 +73,7 @@ public class GameManager : MonoBehaviour
     public void ScoreUpdate(int score)
     {
         this.score += score;
-        scoreCount.SetText($"Skor: {this.score}");
+        scoreCount.SetText($"Score: {this.score}");
 
         codeBar.fillAmount -= 2/4f;
 
@@ -84,7 +81,7 @@ public class GameManager : MonoBehaviour
     
     public void ScoreUpdate()
     {
-        scoreCount.SetText($"Skor: {this.score}");
+        scoreCount.SetText($"Score: {this.score}");
     }
 
     public void OyunaDevamEt()

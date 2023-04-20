@@ -24,7 +24,10 @@ public class CollectableSpawnManager : MonoBehaviour
     
     private double accumulatedWeights;
     private System.Random rand = new System.Random();
+
+
     
+
     private void Awake()
     {
         CalculateWeights();
@@ -38,12 +41,13 @@ public class CollectableSpawnManager : MonoBehaviour
 
     private void SpawnRandomEnemy()
     {
-        EnemyProbabilities randomEnemy = collectables[GetRandomEnemyIndex()];
+        EnemyProbabilities randomCollectables = collectables[GetRandomEnemyIndex()];
       
         Vector3 spawnPoint = Random.insideUnitSphere * colRadius.radius + transform.position;
         spawnPoint.y = 0f;
-       
-        Instantiate(randomEnemy.Prefab, spawnPoint, Quaternion.identity);
+
+        Instantiate(randomCollectables.Prefab, spawnPoint, Quaternion.identity);
+        
     }
 
     private int GetRandomEnemyIndex()

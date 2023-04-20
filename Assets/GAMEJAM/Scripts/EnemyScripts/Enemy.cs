@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour
        
     }
 
-    private void GetTargetDistance()        // Hedef ile düşman arasındaki mesafeyi ölçer.
+    private void GetTargetDistance() // Hedef ile düşman arasındaki mesafeyi ölçer.
     {
         inRange = Vector3.Distance(target.transform.position, transform.position) <= range;
     }
@@ -89,14 +89,14 @@ public class Enemy : MonoBehaviour
     {
         health -= damageAmount;
 
-
-        if (health <= 0f )
+        if (health <= 0f)
         {
             isDead = true;
             health = 0f;
             EnemyDead();
         }
     }
+
     void EnemyDead()
     {
         if(!isRewarded)
@@ -116,7 +116,7 @@ public class Enemy : MonoBehaviour
 
     public void Attack()
     {
-        animator.SetInteger("AttackType", Random.Range(0,2));
+        animator.SetInteger("AttackType", Random.Range(0, 2));
         animator.SetBool("isAttack", true);
 
         Vector3 direction = target.transform.position - transform.position;//bakıcağımız pozisyonu belirledik
@@ -126,12 +126,14 @@ public class Enemy : MonoBehaviour
         Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);//yönümüzü player a çevirdik
 
         enemyAgent.updatePosition = false;
-      
-
     }
+
     public void DamagePlayer() //AnimationEvent
     {
-        playerHealth.DamagePlayer(attackDamage);
+        if (inRange)
+        {
+            playerHealth.DamagePlayer(attackDamage);
+        }
     }
 
     public void Move(Vector3 direction) // Hedef menzilde(inRange) değilse hareket eder.

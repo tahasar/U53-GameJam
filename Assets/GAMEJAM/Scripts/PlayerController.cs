@@ -8,23 +8,23 @@ using Random = UnityEngine.Random;
 public class PlayerController : MonoBehaviour
 {
     public UnityEngine.Animations.Rigging.Rig handIK;
-
     public Transform weaponParent;
     public Transform weaponLeftGrip;
     public Transform weaponRightGrip;
-
     public Animator rigController;
 
     [SerializeField] public float playerSpeed = 10f;
     Vector3 moveVector;
-    Vector3 deneme;
     CharacterController characterControl;
+    [HideInInspector] PlayerHealth playerHealth;
 
+    public float timer = 0;
     bool isCrouch;
     public bool isGrounded;
     public bool isJump;
     public bool isMove;
     public bool isRun;
+
     public Transform groundCheck;
     public LayerMask groundMask;
     public float groundDistance;
@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
         characterControl = GetComponent<CharacterController>();
         gameManager = GameManager.instance;
         audio = GetComponent<AudioSource>();
+        playerHealth = GetComponent<PlayerHealth>();
+      
     }
 
 
@@ -63,11 +65,6 @@ public class PlayerController : MonoBehaviour
 
         characterControl.Move(moveVector * (playerSpeed * Time.deltaTime));
 
-        //if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)|| Input.GetKey(KeyCode.W))
-        //{
-        //    Debug.Log("araba");
-        //}
-
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) ||
             Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
         {
@@ -79,7 +76,7 @@ public class PlayerController : MonoBehaviour
             rigController.SetBool("Move", false);
             isMove = false;
         }
-
+       
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
 
@@ -93,7 +90,6 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded && Input.GetKeyDown(KeyCode.LeftShift) && isMove)
         {
-            Debug.Log("xd");
             rigController.SetBool("Run", true);
             playerSpeed = 8;
             isRun = true;
@@ -105,23 +101,26 @@ public class PlayerController : MonoBehaviour
             isRun = false;
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded &&!isJump)
+        if (Input.GetButtonDown("Jump") && isGrounded && !isJump)
         {
             audio.clip = jumpSounds[Random.Range(0, 3)];
             audio.Play();
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            
         }
         if (!isGrounded)
         {
             isJump = true;
             rigController.SetBool("Jump", true);
+           
         }
         else
         {
             rigController.SetBool("Jump", false);
             isJump = false;
         }
-
+      
+     
     }
 
     [ContextMenu("Save Weapon Pose")]
@@ -134,7 +133,5 @@ public class PlayerController : MonoBehaviour
         recorder.BindComponentsOfType<Transform>(gameObject, false);
         UnityEditor.AssetDatabase.SaveAssets();
         recorder.TakeSnapshot(0.0f);
-        
-
     }
 }

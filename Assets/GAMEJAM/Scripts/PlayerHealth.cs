@@ -18,16 +18,14 @@ public class PlayerHealth : MonoBehaviour
       public float medicineCount = 0f;
       public Text medicineCountText;
       public GameObject medicineHand;
-
-      RaycastHit hit;
-      [SerializeField] Transform Cam;
-      public PostProcessProfile postPP;
-      public GameObject shootPoint;
     */
+
+    public PostProcessProfile postPP;
+
     public float distance = 10f;
     public Camera cam;
     public bool isDead = false;
-    public int vibrato;
+   
 
     void Start()
     {
@@ -46,22 +44,21 @@ public class PlayerHealth : MonoBehaviour
         //Health++
         if (!isDead) currentHealth += 1f * Time.deltaTime;
 
-       /* #region POST-PROCESS�NG
-        if (currentHealth <= 100f)
-        {
-            postPP.GetSetting<ChromaticAberration>().intensity.value = 0.5f;
-            postPP.GetSetting<Vignette>().intensity.value = 0.1f;
-            if (currentHealth <= 70f)
-            {
-                postPP.GetSetting<ColorGrading>().colorFilter.overrideState = true;
-                postPP.GetSetting<Vignette>().intensity.value = 0.2f;
 
-                if (currentHealth <= 40f)
+        #region POST-PROCESSİNG
+
+        if (currentHealth <= 300f)
+        {
+            postPP.GetSetting<Vignette>().intensity.value = 0.1f;
+            if (currentHealth <= 150f)
+            {
+                postPP.GetSetting<ChromaticAberration>().intensity.value = 0.5f;
+                postPP.GetSetting<Vignette>().intensity.value = 0.3f;
+
+                if (currentHealth <= 75f)
                 {
                     postPP.GetSetting<ChromaticAberration>().intensity.value = 1f;
-                    postPP.GetSetting<Vignette>().intensity.value = 0.3f;
-                    postPP.GetSetting<Vignette>().smoothness.value = 1f;
-                    postPP.GetSetting<Vignette>().roundness.value = 1f;
+                    postPP.GetSetting<Vignette>().intensity.value = 0.4f;
                 }
             }
         }
@@ -69,38 +66,11 @@ public class PlayerHealth : MonoBehaviour
         {
             postPP.GetSetting<Vignette>().intensity.value = 0f;
             postPP.GetSetting<ChromaticAberration>().intensity.value = 0;
-            postPP.GetSetting<ColorGrading>().colorFilter.overrideState = false;
         }
         #endregion
 
-        #region MED�C�NE
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Medicine"))
-        {
-            medicineHand.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-
-                Destroy(hit.collider.gameObject);
-                medicineCount++;
-            }
-
-        }
-        else medicineHand.SetActive(false);
 
 
-        if (medicineCount != 0 && currentHealth < maxHealth)
-        {
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                Heal();
-                medicineCount--;
-            }
-        }
-        medicineCountText.text = medicineCount.ToString();
-        if (medicineCount < 0f) medicineCount = 0f;
-        #endregion*/
     }
 
 
@@ -109,7 +79,9 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth > 0)
         {
             currentHealth -= damage;
-           cam.transform.DOPunchPosition(new Vector3(.2f, 0), 0.5f,vibrato);
+            var vibrato = (int)damage /2;
+            cam.transform.DOPunchPosition(new Vector3(.2f, .1f), 0.5f, vibrato);
+           
         }
         else
         {

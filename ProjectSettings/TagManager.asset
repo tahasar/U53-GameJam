@@ -17,6 +17,8 @@ TagManager:
   - TopBody
   - Head
   - LowBody
+  - Door
+  - CollectHealth
   layers:
   - Default
   - TransparentFX

@@ -320,6 +320,10 @@ MonoBehaviour:
   range: 100
   rateOffire: 0.1
   escMat: {fileID: 2100000, guid: e20f503514323ff4e9f692aeb354d1f3, type: 2}
+  rMat: {fileID: 2100000, guid: 674afee5146db6c41a3a8590c20b91c4, type: 2}
+  onColor: {r: 1, g: 1, b: 1, a: 1}
+  offColor: {r: 0, g: 0, b: 0, a: 1}
+  baseColor: {r: 0, g: 0, b: 0, a: 1}
   isAim: 0
   currentAmmotext: {fileID: 0}
   carriedAmmotext: {fileID: 0}
@@ -5902,7 +5906,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
+  m_Height: 1.8
   m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -5963,6 +5967,7 @@ MonoBehaviour:
   weaponRightGrip: {fileID: 1225398135672933109}
   rigController: {fileID: 6367340230877610187}
   playerSpeed: 5
+  timer: 0
   isGrounded: 0
   isJump: 0
   isMove: 0
@@ -5979,6 +5984,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a58257547be29504888a92ee72637024, type: 3}
   - {fileID: 8300000, guid: e04ad3376cb7fb749b07382ac34c98b8, type: 3}
   - {fileID: 8300000, guid: 74043e61118e9a24ab44faa08bb0c94e, type: 3}
+  damageMultiplier: 2
+  minimumFallDistance: 1
 --- !u!114 &6367340230232162217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5994,7 +6001,9 @@ MonoBehaviour:
   currentHealth: 400
   maxHealth: 400
   healthBar: {fileID: 0}
+  postPP: {fileID: 11400000, guid: 6aa5a6fecf6386043838b36ab40ca5e5, type: 2}
   distance: 10
+  cam: {fileID: 4353630859616933091}
   isDead: 0
 --- !u!82 &3886737881859073658
 AudioSource:
@@ -15242,7 +15251,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cbbc5c3696b23b1469d9a167cd6cfc07, type: 2}
+  - {fileID: 2100000, guid: 674afee5146db6c41a3a8590c20b91c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15828,7 +15837,7 @@ MonoBehaviour:
     m_Bits: 64
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 3
+  antialiasingMode: 1
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
