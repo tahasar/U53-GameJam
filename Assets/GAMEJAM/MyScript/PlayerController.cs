@@ -7,31 +7,33 @@ using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header ("Rig")]
     public UnityEngine.Animations.Rigging.Rig handIK;
     public Transform weaponParent;
     public Transform weaponLeftGrip;
     public Transform weaponRightGrip;
     public Animator rigController;
 
+    [Header("Move")]
     [SerializeField] public float playerSpeed = 10f;
     Vector3 moveVector;
     CharacterController characterControl;
     [HideInInspector] PlayerHealth playerHealth;
-
-    public float timer = 0;
     bool isCrouch;
-    public bool isGrounded;
-    public bool isJump;
     public bool isMove;
     public bool isRun;
 
+    [Header("Ground")]
+    public bool isGrounded;
     public Transform groundCheck;
     public LayerMask groundMask;
     public float groundDistance;
     Vector3 velocity;
     public float gravity;
-    public float jumpHeight;
 
+    [Header("Jump")]
+    public bool isJump;
+    public float jumpHeight;
     public AudioClip[] jumpSounds;
     private AudioSource audio;
 

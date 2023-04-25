@@ -68,9 +68,6 @@ public class PlayerHealth : MonoBehaviour
             postPP.GetSetting<ChromaticAberration>().intensity.value = 0;
         }
         #endregion
-
-
-
     }
 
 

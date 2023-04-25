@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
@@ -47,6 +48,7 @@ public class Enemy : MonoBehaviour
     public bool attackMode = false;
     private CapsuleCollider collider;
     private bool isRewarded = false;
+    bool isRunning = true;
 
     private void Start()
     {
@@ -66,21 +68,21 @@ public class Enemy : MonoBehaviour
 
     public void Update()
     {
-        GetTargetDistance(); // Hedef ile düşman arasındaki mesafeyi ölçer.
+        GetTargetDistance();
 
         if (!isDead)
         {
-            if (!inRange && !ragdollMode)
+            if (!inRange && !ragdollMode && isRunning)
             {
                 Move(movement);
             }
             else
                 Attack();
         }
-       
+
     }
 
-    private void GetTargetDistance() // Hedef ile düşman arasındaki mesafeyi ölçer.
+    private void GetTargetDistance()
     {
         inRange = Vector3.Distance(target.transform.position, transform.position) <= range;
     }
@@ -97,9 +99,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void TakePushDamage()
+    {
+        isRunning = false;
+        animator.SetBool("isRun", false);
+        animator.Play("TakePushDamage");
+        enemyAgent.updatePosition = false;
+        enemyAgent.updateRotation = false;
+        StartCoroutine(AnimationChange());
+    }
+
     void EnemyDead()
     {
-        if(!isRewarded)
+        if (!isRewarded)
         {
             isRewarded = true;
             audio.clip = enemyDeadSesleri[Random.Range(0, 3)];
@@ -138,14 +150,17 @@ public class Enemy : MonoBehaviour
 
     public void Move(Vector3 direction) // Hedef menzilde(inRange) değilse hareket eder.
     {
-        if(!attackMode){
+        if (!attackMode)
+        {
             enemyAgent.SetDestination(target.transform.position);
             enemyAgent.updatePosition = true;
             enemyAgent.updateRotation = true;
         }
-        
+
         animator.SetBool("isAttack", false);
     }
+
+
 
     #region ****RAGDOLL****
     void GetRagdollbits()
@@ -173,7 +188,7 @@ public class Enemy : MonoBehaviour
         enemyAgent.enabled = false;
         enemyAgent.updatePosition = false;
         enemyAgent.updateRotation = false;
-      
+
     }
 
     void RagdollModeOff()
@@ -203,4 +218,12 @@ public class Enemy : MonoBehaviour
 
     }
     #endregion
+
+
+    IEnumerator AnimationChange()
+    {
+
+        yield return new WaitForSeconds(0.6f);
+        isRunning = true;
+    }
 }

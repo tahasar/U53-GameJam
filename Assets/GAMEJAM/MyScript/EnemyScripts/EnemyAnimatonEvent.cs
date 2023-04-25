@@ -16,4 +16,8 @@ public class EnemyAnimatonEvent : MonoBehaviour
     {
         enemyAnimationEvent.DamagePlayer();
     }
+    void PushDamage()
+    {
+        enemyAnimationEvent.TakePushDamage();
+    }
 }

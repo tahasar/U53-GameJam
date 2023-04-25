@@ -33,10 +33,15 @@ public class EnemySpawnManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("SpawnRandomEnemy", 0f, spawnTime);
-        colRadius = GetComponent<CapsuleCollider>();
 
+        colRadius = GetComponent<CapsuleCollider>();
         gameManager = GameManager.instance;
+        SpawnRandomEnemy();
+
+    }
+    public void Update()
+    {
+        CalculateWeights();
     }
 
     private void SpawnRandomEnemy()
@@ -49,14 +54,16 @@ public class EnemySpawnManager : MonoBehaviour
         Instantiate(randomEnemy.Prefab, spawnPoint, Quaternion.identity);
 
         //SpawnSettings
-        if (spawnTime > 1) spawnTime -= 0.03f;
+        if (spawnTime > 1) spawnTime -= 0.015f;
 
-        if (enemies[2].chance !<=100f) enemies[2].chance += 1f;
+        if (enemies[2].chance !<=100f) enemies[2].chance += 0.5f;
 
-        if (enemies[1].chance !<= 100f) enemies[1].chance += 1.5f;
+        if (enemies[1].chance !<= 100f) enemies[1].chance += 1f;
         
-        if (enemies[0].chance !>= 5f) enemies[0].chance -= 1f;
+        if (enemies[0].chance !>= 5f) enemies[0].chance -= 0.5f;
 
+
+        Invoke("SpawnRandomEnemy", spawnTime);
     }
 
     private int GetRandomEnemyIndex()

@@ -53,8 +53,6 @@ public class KeyBoardController : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public GameObject bloodEffect;
     GameObject bloodClone;
-    public GameObject bulletHoleEffect;
-    GameObject bulletHoleClone;
     [SerializeField] private TrailRenderer Bullettrail;
     public GameObject TrailBulletPos;
     #endregion
@@ -80,7 +78,6 @@ public class KeyBoardController : MonoBehaviour
     [SerializeField] private float maxForceTime;
     #endregion
 
-
     #region Audıo
     [Header("Audio")]
     public AudioClip[] tusSesleri;
@@ -91,6 +88,11 @@ public class KeyBoardController : MonoBehaviour
     Vector3 mousePosition;
     Ray ray;
 
+    bool isPower = false;
+
+    public float attackRadius = 2f;
+    public float attackForce = 10f;
+   
 
     public void Start()
     {
@@ -111,7 +113,7 @@ public class KeyBoardController : MonoBehaviour
     {
         UpdateAmmoUI();
 
-        #region SHOOT
+        #region Attack
 
         if (Input.GetButton("Fire1") && currentAmmo > 0 && isShoot)
         {
@@ -123,6 +125,11 @@ public class KeyBoardController : MonoBehaviour
         {
             DryFire();
         }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            playerRig.rigController.Play("Push");
+        }
+
         if (Input.GetKeyDown(KeyCode.R) || currentAmmo == 0)
         {
             Reload();
@@ -161,6 +168,29 @@ public class KeyBoardController : MonoBehaviour
         #endregion
     }
 
+    public void AttackPush() //AnimationEvent
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, attackRadius); 
+
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject.tag == "Enemy")
+            { 
+                Rigidbody enemyRigidbody = collider.gameObject.GetComponent<Rigidbody>(); 
+
+                if (enemyRigidbody != null)
+                {
+                    Vector3 pushDirection = (collider.transform.position - this.transform.position).normalized;
+
+                    enemyRigidbody.AddForce(pushDirection * attackForce, ForceMode.Impulse);
+                    Enemy enemy = enemyRigidbody.transform.GetComponent<Enemy>();
+                    enemy.TakePushDamage();
+                    
+                }
+            }
+        }
+    }
+
     private void Shoot()
     {
         if (Time.time > nextFire)
@@ -176,27 +206,27 @@ public class KeyBoardController : MonoBehaviour
                     keysCount--;
                     currentAmmo--;
                 }
-                nextFire = Time.time + rateOffire;
-                nextFire = 0;
-
                 muzzleFlash.Play();
                 StartCoroutine(KeyLight(0.2f));
                 recoilCam.Recoil();
                 ShootRay();
 
-                if (isAim && shootRay)
+                if (shootRay && !isAim)
                 {
-
-                    playerRig.rigController.SetBool("AimShoot", true);
-                }
-                else if (!isAim && shootRay)
-                {
-
                     playerRig.rigController.Play("shoot");
+                  
                 }
+                if (isPower)
+                {
+                    rateOffire = 0.01f;
+                }
+                else
+                {
+                    rateOffire = 0.1f;
+                }
+                nextFire = 0;
                 nextFire = Time.time + rateOffire;
             }
-
         }
     }
 
@@ -281,13 +311,11 @@ public class KeyBoardController : MonoBehaviour
                 }
                 Destroy(bulletClone, 0.1f);
             }
-            else if (raycastHit.transform.CompareTag("Untagged"))
+            else 
             {
-
-                bulletHoleClone = Instantiate(bulletHoleEffect, raycastHit.point, transform.rotation);
                 Destroy(bulletClone, 2f);
             }
-            Destroy(bloodClone, 2f); Destroy(bulletHoleClone, 2f);
+            Destroy(bloodClone, 2f);
         }
     }
 
