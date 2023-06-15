@@ -1,3 +1,5 @@
 # U53-GameJam
 
-xd
+Hüseyin Yıldırım - Developer
+Taha Asar - Developer
+Şeyda Arslan - Art & UI
