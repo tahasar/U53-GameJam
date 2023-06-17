@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4071185782778769817}
   - component: {fileID: -653215275489290722}
   m_Layer: 8
-  m_Name: Gri KeyHunter
+  m_Name: Yellow KeyHunter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

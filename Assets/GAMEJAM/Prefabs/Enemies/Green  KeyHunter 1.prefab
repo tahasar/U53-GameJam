@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4071185782778769817}
   - component: {fileID: -653215275489290722}
   m_Layer: 8
-  m_Name: "K\u0131rm\u0131z\u0131 KeyHunter"
+  m_Name: Green  KeyHunter 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.22
+  m_Radius: 0.15
   m_Height: 1.8938901
   m_Direction: 1
   m_Center: {x: 0, y: 0.93305504, z: 0}
@@ -80,10 +80,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  health: 400
+  health: 150
   range: 2
-  attackDamage: 45
-  scoreReward: 5
+  attackDamage: 40
+  scoreReward: 3
   inRange: 0
   turnSpeed: 20
   animator: {fileID: 186567024715000905}
@@ -103,7 +103,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 8
+  m_Speed: 5
   m_Acceleration: 500
   avoidancePriority: 50
   m_AngularSpeed: 10000
@@ -921,11 +921,11 @@ PrefabInstance:
     - target: {fileID: 1172324090021531726, guid: ab430ee8d04f62145957acdca5567e40, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6fc8f361305a0964593b6e05a955cf80, type: 2}
+      objectReference: {fileID: 2100000, guid: a103432d0d5415f4daaaf5b10273f120, type: 2}
     - target: {fileID: 1172324090021531726, guid: ab430ee8d04f62145957acdca5567e40, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 92c5be0ed5468384d9e00341c6e53c82, type: 2}
+      objectReference: {fileID: 2100000, guid: b187ca98032c93146b866fdcf6c7edd7, type: 2}
     - target: {fileID: 1189529853000058984, guid: ab430ee8d04f62145957acdca5567e40, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 84.204506
@@ -2213,8 +2213,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.47839737, y: 0.19910267, z: 0.31140232}
-  m_Center: {x: -0.00003552437, y: 0.010422107, z: 0.020512044}
+  m_Size: {x: 0.47839737, y: 0.22476785, z: 0.32622856}
+  m_Center: {x: -0.00003552437, y: 0.023254717, z: 0.027925164}
 --- !u!1 &6862691711672249481 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ab430ee8d04f62145957acdca5567e40, type: 3}

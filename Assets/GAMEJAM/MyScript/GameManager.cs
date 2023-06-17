@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     public bool brokenRotate = false;
     public AudioClip music;
     private AudioSource audio;
-
+    
     #region MENU
 
     public GameObject duraklatmaEkranı;
@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI oyunSonuSkor;
 
     #endregion
+
+    [Header("Armor")]
+    public GameObject[] armorImage;
+    public int armorMount = 0;
 
     public void Update()
     {
@@ -51,7 +55,7 @@ public class GameManager : MonoBehaviour
                 brokenDirection = true;
             }
         }
-         if(codeBar.fillAmount < 0.75f)
+        if (codeBar.fillAmount < 0.75f)
         {
             warning.SetActive(false);
         }
@@ -59,8 +63,6 @@ public class GameManager : MonoBehaviour
         {
             brokenRotate = true;
         }
-        
-
 
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab))
         {
@@ -68,6 +70,20 @@ public class GameManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             duraklatmaEkranı.SetActive(true);
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            armorMount--;
+            armorImage[armorMount].SetActive(false);
+        }
+
+
+
+        if (armorMount <= 0)
+        {
+            armorMount = 0;
+        }
+        else return;
     }
 
     public void ScoreUpdate(int score)

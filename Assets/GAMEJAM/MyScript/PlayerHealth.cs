@@ -14,18 +14,11 @@ public class PlayerHealth : MonoBehaviour
     public Image healthBar;
     float lerpspeed;
 
-    /*  [Header("Medicine")]
-      public float medicineCount = 0f;
-      public Text medicineCountText;
-      public GameObject medicineHand;
-    */
-
     public PostProcessProfile postPP;
 
     public float distance = 10f;
     public Camera cam;
     public bool isDead = false;
-   
 
     void Start()
     {
@@ -68,17 +61,18 @@ public class PlayerHealth : MonoBehaviour
             postPP.GetSetting<ChromaticAberration>().intensity.value = 0;
         }
         #endregion
+        
     }
 
 
-    public void DamagePlayer(float damage)
+    public void DamagePlayer(float damage) //DÜZENLENCEK
     {
         if (currentHealth > 0)
         {
             currentHealth -= damage;
-            var vibrato = (int)damage /2;
+            var vibrato = (int)damage / 2;
             cam.transform.DOPunchPosition(new Vector3(.2f, .1f), 0.5f, vibrato);
-           
+
         }
         else
         {

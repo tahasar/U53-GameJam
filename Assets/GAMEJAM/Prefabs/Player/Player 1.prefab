@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 1100447693388531478}
   - component: {fileID: 5663051522150097226}
   - component: {fileID: 1100447693388531479}
+  - component: {fileID: 1225567795}
   m_Layer: 0
   m_Name: Keyboard
   m_TagString: KeyBoard
@@ -334,7 +335,6 @@ MonoBehaviour:
   isShoot: 1
   muzzleFlash: {fileID: 5611684077941279616}
   bloodEffect: {fileID: 1000013169864706, guid: e5a3d6da48298a0458c1990f58c27069, type: 3}
-  bulletHoleEffect: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
   Bullettrail: {fileID: 7165683624682292878, guid: 56fd7d6899b87fd47bf4464628670c5b, type: 3}
   TrailBulletPos: {fileID: 5663051520234962309}
   crossHair: {fileID: 0}
@@ -353,6 +353,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 83ca29738b4f21a429da15d1616d2472, type: 3}
   - {fileID: 8300000, guid: 202770eb195226d4f97420a76fe01980, type: 3}
   reloadSesi: {fileID: 8300000, guid: d63075dac1f10444889424534b6e80da, type: 3}
+  attackRadius: 2
+  attackForce: 1000
 --- !u!82 &1100447693388531479
 AudioSource:
   m_ObjectHideFlags: 0
@@ -449,6 +451,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &1225567795
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292245742567955884}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &376256073043578498
 GameObject:
   m_ObjectHideFlags: 0
@@ -5967,25 +5985,22 @@ MonoBehaviour:
   weaponRightGrip: {fileID: 1225398135672933109}
   rigController: {fileID: 6367340230877610187}
   playerSpeed: 5
-  timer: 0
-  isGrounded: 0
-  isJump: 0
   isMove: 0
   isRun: 0
+  isGrounded: 0
   groundCheck: {fileID: 6973884816430701603}
   groundMask:
     serializedVersion: 2
     m_Bits: 8
   groundDistance: 0.3
   gravity: -9.94
+  isJump: 0
   jumpHeight: 1
   jumpSounds:
   - {fileID: 8300000, guid: 45a4ffa6418f8a247819e235e2a27ff8, type: 3}
   - {fileID: 8300000, guid: a58257547be29504888a92ee72637024, type: 3}
   - {fileID: 8300000, guid: e04ad3376cb7fb749b07382ac34c98b8, type: 3}
   - {fileID: 8300000, guid: 74043e61118e9a24ab44faa08bb0c94e, type: 3}
-  damageMultiplier: 2
-  minimumFallDistance: 1
 --- !u!114 &6367340230232162217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16201,6 +16216,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6201747262583777056}
   - component: {fileID: 6367340230877610187}
+  - component: {fileID: 34591793}
   m_Layer: 0
   m_Name: ----RigLayers----
   m_TagString: Untagged
@@ -16245,6 +16261,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &34591793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7540414870783840848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ad5aec09faa50143b08e227d97c81dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7753430354095493749
 GameObject:
   m_ObjectHideFlags: 0
