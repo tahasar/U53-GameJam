@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -21,6 +23,10 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    [SerializeField] private PlayableDirector director;
+    [SerializeField] private GameObject storySlide;
+    [SerializeField] private CanvasGroup playerStats;
+    
     public TextMeshProUGUI scoreCount;
     public int score;
     public Image codeBar;
@@ -43,8 +49,17 @@ public class GameManager : MonoBehaviour
     public GameObject[] armorImage;
     public int armorMount = 0;
 
+    private void Start()
+    {
+        playerStats.alpha = 0;
+        playerStats.interactable = false;
+        //director.Pause();
+        director.stopped += OnDirectorFinished;
+    }
+
     public void Update()
     {
+
         codeBar.fillAmount += 2f / 100f * Time.deltaTime;
         codeBar.color = Color.Lerp(Color.green, Color.red, codeBar.fillAmount);
         if (codeBar.fillAmount > 0.75f && !brokenDirection)
@@ -129,5 +144,16 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         oyunSonuSkor.SetText($"{score}");
         oyunSonuEkranı.SetActive(true);
+    }
+    
+    private void OnDirectorFinished(PlayableDirector director)
+    {
+        // Playable Director tamamlandığında yapılması gereken işlem
+        Debug.Log("Director tamamlandı. İşlem yapılabilir.");
+
+        director.gameObject.SetActive(false);
+        storySlide.SetActive(false);
+        playerStats.alpha = 1;
+        playerStats.interactable = true;
     }
 }

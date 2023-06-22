@@ -21,7 +21,6 @@ public class EnemySpawnManager : MonoBehaviour
     CapsuleCollider colRadius;
     
     [SerializeField] private EnemyProbabilities[] enemies;
-    GameManager gameManager;
     private double accumulatedWeights;
     private System.Random rand = new System.Random();
     
@@ -33,18 +32,14 @@ public class EnemySpawnManager : MonoBehaviour
 
     void Start()
     {
-
         colRadius = GetComponent<CapsuleCollider>();
-        gameManager = GameManager.instance;
-        SpawnRandomEnemy();
-
     }
     public void Update()
     {
         CalculateWeights();
     }
 
-    private void SpawnRandomEnemy()
+    public void SpawnRandomEnemy()
     {
         EnemyProbabilities randomEnemy = enemies[GetRandomEnemyIndex()];
       
@@ -63,7 +58,7 @@ public class EnemySpawnManager : MonoBehaviour
         if (enemies[0].chance !>= 5f) enemies[0].chance -= 0.5f;
 
 
-        Invoke("SpawnRandomEnemy", spawnTime);
+        Invoke(nameof(SpawnRandomEnemy), spawnTime);
     }
 
     private int GetRandomEnemyIndex()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
@@ -121,8 +122,6 @@ public class PlayerController : MonoBehaviour
             rigController.SetBool("Jump", false);
             isJump = false;
         }
-      
-     
     }
 
     [ContextMenu("Save Weapon Pose")]
@@ -136,4 +135,6 @@ public class PlayerController : MonoBehaviour
         UnityEditor.AssetDatabase.SaveAssets();
         recorder.TakeSnapshot(0.0f);
     }
+
+    
 }
