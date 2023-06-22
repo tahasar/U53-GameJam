@@ -15148,7 +15148,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e20f503514323ff4e9f692aeb354d1f3, type: 2}
+  - {fileID: 2100000, guid: 6fc39c8c1c13fd840a197b78657bd999, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16702,6 +16702,10 @@ MonoBehaviour:
   range: 100
   rateOffire: 0.1
   escMat: {fileID: 2100000, guid: e20f503514323ff4e9f692aeb354d1f3, type: 2}
+  rMat: {fileID: 0}
+  onColor: {r: 0, g: 0, b: 0, a: 0}
+  offColor: {r: 0, g: 0, b: 0, a: 0}
+  baseColor: {r: 0, g: 0, b: 0, a: 0}
   isAim: 0
   currentAmmotext: {fileID: 0}
   carriedAmmotext: {fileID: 0}
@@ -16712,7 +16716,6 @@ MonoBehaviour:
   isShoot: 1
   muzzleFlash: {fileID: 3405704737478158814}
   bloodEffect: {fileID: 1000013169864706, guid: e5a3d6da48298a0458c1990f58c27069, type: 3}
-  bulletHoleEffect: {fileID: 1000010355441670, guid: 02a509a7fa70ed740ba4197e20c5d32d, type: 3}
   Bullettrail: {fileID: 7165683624682292878, guid: 56fd7d6899b87fd47bf4464628670c5b, type: 3}
   TrailBulletPos: {fileID: 3185445573812608987}
   crossHair: {fileID: 0}
@@ -16727,6 +16730,10 @@ MonoBehaviour:
   particleKey: {fileID: 4394100149457411203}
   maxForce: 250
   maxForceTime: 2
+  tusSesleri: []
+  reloadSesi: {fileID: 0}
+  attackRadius: 2
+  attackForce: 10
 --- !u!1 &7465684375326125276
 GameObject:
   m_ObjectHideFlags: 0
