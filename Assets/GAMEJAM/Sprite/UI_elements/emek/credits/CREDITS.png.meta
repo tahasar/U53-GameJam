@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2f1526a82c771404c9a134add1c0ef80
+guid: f5a69cef2374eac48b3dc4ba851c2f63
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,29 +101,17 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: duraklatQuit_0
+      name: CREDITS_0
       rect:
         serializedVersion: 2
-        x: 708
-        y: 347
-        width: 513
-        height: 72
+        x: 409
+        y: 856
+        width: 1082
+        height: 114
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1634f6b304ecb5a4cb4f0f0b6e1f8ea2
-      internalID: -1360573289
+      spriteID: 8ef9525d729402c498c3153fbe7e6760
+      internalID: -1563519543
       vertices: []
       indices: 
       edges: []
@@ -140,7 +128,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 87429d1bf88bddf44b0c1305576ce9e5
+    spriteID: 8820bbc345fd38d42a79a62e564afc5e
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +136,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      duraklatQuit_0: -1360573289
+      CREDITS_0: -1563519543
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

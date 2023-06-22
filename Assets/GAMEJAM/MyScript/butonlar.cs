@@ -5,11 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class butonlar : MonoBehaviour
 {
-    public void geriDonme()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex -2);
-    }
-
     public void seydaLink()
     {
         Application.OpenURL("https://www.linkedin.com/in/seydarslan/");
@@ -25,9 +20,5 @@ public class butonlar : MonoBehaviour
         Application.OpenURL("https://www.linkedin.com/in/hsynyldrm/");
     }
 
-    public void haticeLink()
-    {
-        Application.OpenURL("https://www.linkedin.com/in/hatice-altunbay-300218170");
-    }
-
+   
 }

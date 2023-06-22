@@ -23,9 +23,6 @@ public class Collectable : MonoBehaviour
     public Ease easeType = Ease.Linear;
 
 
-
-
-
     private void Start()
     {
         keyBoard = GameObject.FindGameObjectWithTag("KeyBoard").GetComponent<KeyBoardController>();
@@ -44,13 +41,7 @@ public class Collectable : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (gameObject.CompareTag("CollectArmor"))
-            {
-                gameManager.armorMount++;
-                gameManager.armorImage[gameManager.armorMount-1].SetActive(true);
-                
-            }
-
+          
             if (gameObject.CompareTag("CollectKey"))
             {
                 gameManager.brokenDirection = false;

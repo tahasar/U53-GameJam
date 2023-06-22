@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -26,7 +27,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayableDirector director;
     [SerializeField] private GameObject storySlide;
     [SerializeField] private CanvasGroup playerStats;
-    
+    [SerializeField] private GameObject anaMenu;
+
     public TextMeshProUGUI scoreCount;
     public int score;
     public Image codeBar;
@@ -34,8 +36,7 @@ public class GameManager : MonoBehaviour
     private float fillAmount = 0f;
     public bool brokenDirection = false;
     public bool brokenRotate = false;
-    public AudioClip music;
-    private AudioSource audio;
+    
     
     #region MENU
 
@@ -45,20 +46,32 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    [Header("Armor")]
-    public GameObject[] armorImage;
-    public int armorMount = 0;
+   
 
     private void Start()
     {
         playerStats.alpha = 0;
         playerStats.interactable = false;
-        //director.Pause();
+        director.Pause();
         director.stopped += OnDirectorFinished;
     }
 
+    public void timeLineStart()
+    {
+        director.Play();
+        storySlide.SetActive(true);    
+    }
+
+
     public void Update()
     {
+       
+       if (storySlide.activeSelf == false)
+       {
+           Cursor.lockState = CursorLockMode.None;
+       }
+       else Cursor.lockState = CursorLockMode.Locked;
+
 
         codeBar.fillAmount += 2f / 100f * Time.deltaTime;
         codeBar.color = Color.Lerp(Color.green, Color.red, codeBar.fillAmount);
@@ -86,19 +99,7 @@ public class GameManager : MonoBehaviour
             duraklatmaEkranı.SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            armorMount--;
-            armorImage[armorMount].SetActive(false);
-        }
-
-
-
-        if (armorMount <= 0)
-        {
-            armorMount = 0;
-        }
-        else return;
+       
     }
 
     public void ScoreUpdate(int score)
@@ -136,6 +137,7 @@ public class GameManager : MonoBehaviour
     public void Cikis()
     {
         Application.Quit();
+        Debug.Log("fdsf");
     }
 
     public void GameOver()
@@ -155,5 +157,7 @@ public class GameManager : MonoBehaviour
         storySlide.SetActive(false);
         playerStats.alpha = 1;
         playerStats.interactable = true;
+        Cursor.lockState = CursorLockMode.Locked;
     }
+
 }
