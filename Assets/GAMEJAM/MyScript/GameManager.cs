@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using Cinemachine;
 public class GameManager : MonoBehaviour
 {
     #region Singleton
@@ -33,20 +33,27 @@ public class GameManager : MonoBehaviour
     public int score;
     public Image codeBar;
     public GameObject warning;
-    private float fillAmount = 0f;
+    public GameObject riglayers;
     public bool brokenDirection = false;
     public bool brokenRotate = false;
-    
-    
+    public bool storyActive;
+    public bool menuActive;
+
     #region MENU
 
     public GameObject duraklatmaEkranı;
     public GameObject oyunSonuEkranı;
     public TextMeshProUGUI oyunSonuSkor;
+    public GameObject storyImage;
 
     #endregion
 
-   
+    [SerializeField] PlayerController playerMove;
+    [SerializeField] KeyBoardController keyboard;
+
+    [SerializeField] AudioSource aSource;
+    [SerializeField] AudioClip aClipBackGround;
+    [SerializeField] AudioClip aClip;
 
     private void Start()
     {
@@ -54,23 +61,33 @@ public class GameManager : MonoBehaviour
         playerStats.interactable = false;
         director.Pause();
         director.stopped += OnDirectorFinished;
+        storyActive = true;
+
+        playerMove.enabled = false;
+        keyboard.enabled = false;
     }
 
     public void timeLineStart()
     {
         director.Play();
-        storySlide.SetActive(true);    
+        storySlide.SetActive(true);
+        storyActive = true;
+        storyImage.SetActive(true);
     }
 
 
     public void Update()
     {
        
-       if (storySlide.activeSelf == false)
-       {
-           Cursor.lockState = CursorLockMode.None;
-       }
-       else Cursor.lockState = CursorLockMode.Locked;
+       if (storySlide.activeSelf == false &&storyActive)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Debug.Log("none");
+        }
+        else if (!storyActive &&!menuActive)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 
 
         codeBar.fillAmount += 2f / 100f * Time.deltaTime;
@@ -92,14 +109,13 @@ public class GameManager : MonoBehaviour
             brokenRotate = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Escape) && !storyActive || Input.GetKeyDown(KeyCode.Tab) && !storyActive)
         {
             Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             duraklatmaEkranı.SetActive(true);
+            menuActive = true;
         }
-
-       
     }
 
     public void ScoreUpdate(int score)
@@ -121,11 +137,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
         duraklatmaEkranı.SetActive(false);
+       
     }
-    
     public void AnaMenuyeDon()
     {
-        SceneManager.LoadScene("anaMenu");
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
         Time.timeScale = 1;
     }
     
@@ -137,7 +154,6 @@ public class GameManager : MonoBehaviour
     public void Cikis()
     {
         Application.Quit();
-        Debug.Log("fdsf");
     }
 
     public void GameOver()
@@ -150,14 +166,19 @@ public class GameManager : MonoBehaviour
     
     private void OnDirectorFinished(PlayableDirector director)
     {
-        // Playable Director tamamlandığında yapılması gereken işlem
-        Debug.Log("Director tamamlandı. İşlem yapılabilir.");
-
         director.gameObject.SetActive(false);
         storySlide.SetActive(false);
         playerStats.alpha = 1;
         playerStats.interactable = true;
+
         Cursor.lockState = CursorLockMode.Locked;
+        storyActive = false;
+
+        riglayers.SetActive(true);
+        playerMove.enabled = true;
+        keyboard.enabled = true;
+        storyImage.SetActive(false);
+        aSource.PlayOneShot(aClip);
     }
 
 }

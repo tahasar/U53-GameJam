@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class TimeLine : MonoBehaviour
 {
-    
-    void TimeLineStop()
-    {
 
-        Time.timeScale = 0f;
+   [SerializeField] GameManager gameManager;
+    Animator anim;
+
+    public void Start()
+    {
+        anim = GetComponent<Animator>();
     }
 
-    void TimeLinePlay()
+    public void Update()
     {
-        Time.timeScale = 1f;
+        if (gameManager.storyActive)
+        {
+            anim.SetBool("Menu", true);
+        }
+        else
+        {
+            anim.SetBool("Menu", false);
+        }
     }
 }
