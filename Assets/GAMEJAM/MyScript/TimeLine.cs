@@ -1,27 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TimeLine : MonoBehaviour
+namespace GAMEJAM.MyScript
 {
-
-   [SerializeField] GameManager gameManager;
-    Animator anim;
-
-    public void Start()
+    public class TimeLine : MonoBehaviour
     {
-        anim = GetComponent<Animator>();
-    }
 
-    public void Update()
-    {
-        if (gameManager.storyActive)
+        [SerializeField] GameManager gameManager;
+        Animator anim;
+        private static readonly int Menu = Animator.StringToHash("Menu");
+
+        public void Start()
         {
-            anim.SetBool("Menu", true);
+            anim = GetComponent<Animator>();
         }
-        else
+
+        public void Update()
         {
-            anim.SetBool("Menu", false);
+            if (gameManager.storyActive)
+            {
+                anim.SetBool(Menu, true);
+            }
+            else
+            {
+                anim.SetBool(Menu, false);
+            }
         }
     }
 }

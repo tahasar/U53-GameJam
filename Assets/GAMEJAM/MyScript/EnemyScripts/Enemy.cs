@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
         collider = GetComponent<CapsuleCollider>();
 
         //attackRandomIndex = UnityEngine.Random.Range(0, 3);
-        gameManager = GameManager.instance;
+        gameManager = GameManager.Instance;
 
         GetRagdollbits();
         RagdollModeOff();

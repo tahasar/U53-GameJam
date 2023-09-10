@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
 using DG.Tweening;
+using GAMEJAM.MyScript;
+
 public class Collectable : MonoBehaviour
 {
     public int scoreReward;
@@ -29,7 +31,7 @@ public class Collectable : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         rotateFix = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PlayerRotate>();
-        gameManager = GameManager.instance;
+        gameManager = GameManager.Instance;
 
         //Collectable-Dotween
         ScaleObj();

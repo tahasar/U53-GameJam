@@ -372,7 +372,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 626797519}
         m_TargetAssemblyTypeName: butonlar, Assembly-CSharp
-        m_MethodName: tahaLink
+        m_MethodName: TahaLink
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -535,7 +535,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 626797519}
         m_TargetAssemblyTypeName: butonlar, Assembly-CSharp
-        m_MethodName: seydaLink
+        m_MethodName: SeydaLink
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1769,7 +1769,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 626797519}
         m_TargetAssemblyTypeName: butonlar, Assembly-CSharp
-        m_MethodName: huseyinLink
+        m_MethodName: HuseyinLink
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

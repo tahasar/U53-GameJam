@@ -5,18 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class anaMenu : MonoBehaviour
 {
-    public void oyunuBaslat()
+    public void OyunuBaslat()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void oyundanCik()
+    public void OyundanCik()
     {
         Application.Quit();
-        Debug.Log("Çýktýn");
+        Debug.Log("ï¿½ï¿½ktï¿½n");
     }
 
-    public void emekMenusune()
+    public void EmekMenusune()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }

@@ -5,17 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class butonlar : MonoBehaviour
 {
-    public void seydaLink()
+    public void SeydaLink()
     {
         Application.OpenURL("https://www.linkedin.com/in/seydarslan/");
     }
 
-    public void tahaLink()
+    public void TahaLink()
     {
         Application.OpenURL("https://www.linkedin.com/in/tahasar");
     }
 
-    public void huseyinLink()
+    public void HuseyinLink()
     {
         Application.OpenURL("https://www.linkedin.com/in/hsynyldrm/");
     }

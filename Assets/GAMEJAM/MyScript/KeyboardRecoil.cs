@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeyboardRecoil : MonoBehaviour
 {
-    Vector3 currentRotation, targetRotation, targetPosition, currentPosition, initialGunPosition;
+    Vector3 _currentRotation, _targetRotation, _targetPosition, _currentPosition, _initialGunPosition;
     public Transform cam;
 
     [SerializeField] float recoilX;
@@ -19,22 +19,22 @@ public class KeyboardRecoil : MonoBehaviour
 
     public void Start()
     {
-        initialGunPosition = transform.localPosition;
+        _initialGunPosition = transform.localPosition;
     }
 
     public void Update()
     {
         
 
-        targetRotation = Vector3.Lerp(targetRotation, Vector3.zero, returnAmount * Time.deltaTime);
-        currentRotation = Vector3.Slerp(currentRotation, targetRotation, snappiness * Time.fixedDeltaTime);
-        transform.localRotation = Quaternion.Euler(currentRotation);
+        _targetRotation = Vector3.Lerp(_targetRotation, Vector3.zero, returnAmount * Time.deltaTime);
+        _currentRotation = Vector3.Slerp(_currentRotation, _targetRotation, snappiness * Time.fixedDeltaTime);
+        transform.localRotation = Quaternion.Euler(_currentRotation);
     }
 
     public void Recoil()
     {
 
-       targetRotation += new Vector3(recoilX, UnityEngine.Random.Range(-recoilY, recoilY), UnityEngine.Random.Range(-recoilZ, recoilZ));
+       _targetRotation += new Vector3(recoilX, UnityEngine.Random.Range(-recoilY, recoilY), UnityEngine.Random.Range(-recoilZ, recoilZ));
 
 
     }

@@ -8,18 +8,20 @@ using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Cinemachine;
+using GAMEJAM.MyScript;
+
 public class GameManager : MonoBehaviour
 {
     #region Singleton
 
-    public static GameManager instance;
+    public static GameManager Instance;
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             return;
         }
-        instance = this;
+        Instance = this;
     }
 
     #endregion
@@ -67,7 +69,7 @@ public class GameManager : MonoBehaviour
         keyboard.enabled = false;
     }
 
-    public void timeLineStart()
+    public void TimeLineStart()
     {
         director.Play();
         storySlide.SetActive(true);

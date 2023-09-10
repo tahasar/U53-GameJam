@@ -125,7 +125,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7526915419165433977}
         m_TargetAssemblyTypeName: anaMenu, Assembly-CSharp
-        m_MethodName: oyunuBaslat
+        m_MethodName: OyunuBaslat
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -321,7 +321,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7526915419165433977}
         m_TargetAssemblyTypeName: anaMenu, Assembly-CSharp
-        m_MethodName: oyundanCik
+        m_MethodName: OyundanCik
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -517,7 +517,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7526915419165433977}
         m_TargetAssemblyTypeName: anaMenu, Assembly-CSharp
-        m_MethodName: emekMenusune
+        m_MethodName: EmekMenusune
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

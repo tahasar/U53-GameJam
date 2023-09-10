@@ -1,46 +1,47 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRotate : MonoBehaviour
+namespace GAMEJAM.MyScript
 {
-
-    public float Sensitivity = 80;
-    public Transform playerBody;
-    float xRotation = 0f;
-    float rotateY;
-    float rotateX;
-    [HideInInspector] GameManager gameManager;
-
-    void Start()
+    public class PlayerRotate : MonoBehaviour
     {
-        gameManager = GameManager.instance;
-        // gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        Cursor.lockState = CursorLockMode.Locked;
-    }
 
-    void Update()
-    {
-        if (!gameManager.brokenRotate)
+        public float sensitivity = 80;
+        public Transform playerBody;
+        float _xRotation = 0f;
+        float _rotateY;
+        float _rotateX;
+        [HideInInspector] GameManager _gameManager;
+
+        void Start()
         {
-            rotateY = Input.GetAxis("Mouse Y") * Sensitivity * Time.deltaTime;
-            rotateX = Input.GetAxis("Mouse X") * Sensitivity * Time.deltaTime;
-        }
-        else
-        {
-            rotateY = Input.GetAxis("Mouse X") * Sensitivity * Time.deltaTime;
-            rotateX = Input.GetAxis("Mouse Y") * Sensitivity * Time.deltaTime;
+            _gameManager = GameManager.Instance;
+            // gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
+        void Update()
+        {
+            if (!_gameManager.brokenRotate)
+            {
+                _rotateY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+                _rotateX = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+            }
+            else
+            {
+                _rotateY = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
+                _rotateX = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
+            }
 
-        xRotation -= rotateY;
 
-        xRotation = Math.Clamp(xRotation, -80f, 80f);
+            _xRotation -= _rotateY;
 
-        playerBody.Rotate(Vector3.up * rotateX);
+            _xRotation = Math.Clamp(_xRotation, -80f, 80f);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+            playerBody.Rotate(Vector3.up * _rotateX);
+
+            transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
+        }
+
     }
-
 }

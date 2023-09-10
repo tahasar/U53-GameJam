@@ -8,13 +8,13 @@ public class PlayerHealth : MonoBehaviour
 {
 
     [Header("Health")]
-    public static PlayerHealth singleton;
+    public static PlayerHealth Singleton;
     public float currentHealth;
     public float maxHealth = 400f;
     public Image healthBar;
-    float lerpspeed;
+    float _lerpspeed;
 
-    public PostProcessProfile postPP;
+    public PostProcessProfile postPp;
 
     public float distance = 10f;
     public Camera cam;
@@ -22,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
-        singleton = this;
+        Singleton = this;
         currentHealth = maxHealth;
     }
 
@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth > maxHealth) currentHealth = maxHealth;
 
-        lerpspeed = 3f * Time.deltaTime;
+        _lerpspeed = 3f * Time.deltaTime;
 
         //Health++
         if (!isDead) currentHealth += 1f * Time.deltaTime;
@@ -42,23 +42,23 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 300f)
         {
-            postPP.GetSetting<Vignette>().intensity.value = 0.1f;
+            postPp.GetSetting<Vignette>().intensity.value = 0.1f;
             if (currentHealth <= 150f)
             {
-                postPP.GetSetting<ChromaticAberration>().intensity.value = 0.5f;
-                postPP.GetSetting<Vignette>().intensity.value = 0.3f;
+                postPp.GetSetting<ChromaticAberration>().intensity.value = 0.5f;
+                postPp.GetSetting<Vignette>().intensity.value = 0.3f;
 
                 if (currentHealth <= 75f)
                 {
-                    postPP.GetSetting<ChromaticAberration>().intensity.value = 1f;
-                    postPP.GetSetting<Vignette>().intensity.value = 0.4f;
+                    postPp.GetSetting<ChromaticAberration>().intensity.value = 1f;
+                    postPp.GetSetting<Vignette>().intensity.value = 0.4f;
                 }
             }
         }
         else
         {
-            postPP.GetSetting<Vignette>().intensity.value = 0f;
-            postPP.GetSetting<ChromaticAberration>().intensity.value = 0;
+            postPp.GetSetting<Vignette>().intensity.value = 0f;
+            postPp.GetSetting<ChromaticAberration>().intensity.value = 0;
         }
         #endregion
         
@@ -84,12 +84,12 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = 0;
         isDead = true;
-        GameManager.instance.GameOver();
+        GameManager.Instance.GameOver();
     }
 
     void HealthBarFiller()
     {
-        healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, currentHealth / maxHealth, lerpspeed);
+        healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, currentHealth / maxHealth, _lerpspeed);
     }
 
     public void Heal()

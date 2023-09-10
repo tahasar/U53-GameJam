@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using GAMEJAM.MyScript;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,26 +10,26 @@ using Random = UnityEngine.Random;
 
 public class KeyBoardController : MonoBehaviour
 {
-    [HideInInspector] PlayerController playerRig;
+    [HideInInspector] PlayerController _playerRig;
 
-    [HideInInspector] KeyboardRecoil recoilCam;
+    [HideInInspector] KeyboardRecoil _recoilCam;
 
     #region Shoot&Bullet
     [Header("SHOOT")]
-    RaycastHit raycastHit;
+    RaycastHit _raycastHit;
     public GameObject bulletPrefab;
-    GameObject bulletClone;
+    GameObject _bulletClone;
     public float shootForce = 100f;
     [SerializeField] float damage = 25f;
-    [SerializeField] Transform ShootPoint;
+    [SerializeField] Transform shootPoint;
     [SerializeField] float range;
     [SerializeField] float rateOffire;
-    float nextFire = 0f;
+    float _nextFire = 0f;
     public Material escMat;
     public Material rMat;
-    Color currentEmission;
+    Color _currentEmission;
     //Color currentEmissionReload;
-    float newEmissionIntensity;
+    float _newEmissionIntensity;
     //float newEmissionIntensityReload;
     public Color onColor;
     public Color offColor;
@@ -45,16 +46,16 @@ public class KeyBoardController : MonoBehaviour
     public int carriedAmmo = 60;
     public bool isReloading;
     public bool isShoot = true;
-    bool shootRay = false;
+    bool _shootRay = false;
     #endregion
 
     #region Effect
     [Header("Effect")]
     public ParticleSystem muzzleFlash;
     public GameObject bloodEffect;
-    GameObject bloodClone;
-    [SerializeField] private TrailRenderer Bullettrail;
-    public GameObject TrailBulletPos;
+    GameObject _bloodClone;
+    [SerializeField] private TrailRenderer bullettrail;
+    public GameObject trailBulletPos;
     #endregion
 
     #region CrossHair
@@ -65,7 +66,7 @@ public class KeyBoardController : MonoBehaviour
 
     #region Keys
     [Header("KEYS")]
-    Transform[] keys;
+    Transform[] _keys;
     public int keysCount;
     public Transform parent;
     public GameObject keyParticle;
@@ -82,28 +83,29 @@ public class KeyBoardController : MonoBehaviour
     [Header("Audio")]
     public AudioClip[] tusSesleri;
     public AudioClip reloadSesi;
-    private AudioSource audio;
+    private new AudioSource audio;
     #endregion
 
-    Vector3 mousePosition;
-    Ray ray;
+    Vector3 _mousePosition;
+    Ray _ray;
 
-    bool isPower = false;
+    private const bool IsPower = false;
 
     public float attackRadius = 2f;
     public float attackForce = 10f;
-   
+    private static readonly int Aim = Animator.StringToHash("Aim");
+
 
     public void Start()
     {
-        playerRig = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        recoilCam = GameObject.FindGameObjectWithTag("Recoil").GetComponent<KeyboardRecoil>();
+        _playerRig = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        _recoilCam = GameObject.FindGameObjectWithTag("Recoil").GetComponent<KeyboardRecoil>();
         crossHair.SetActive(true);
-        keys = new Transform[parent.childCount];
-        keysCount = keys.Length;
+        _keys = new Transform[parent.childCount];
+        keysCount = _keys.Length;
         for (int i = 0; i < parent.childCount; i++)
         {
-            keys[i] = parent.GetChild(i);
+            _keys[i] = parent.GetChild(i);
         }
 
         audio = GetComponent<AudioSource>();
@@ -127,7 +129,7 @@ public class KeyBoardController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
-            playerRig.rigController.Play("Push");
+            _playerRig.rigController.Play("Push");
         }
 
         if (Input.GetKeyDown(KeyCode.R) || currentAmmo == 0)
@@ -140,7 +142,7 @@ public class KeyBoardController : MonoBehaviour
         #region AiM
         if (Input.GetButtonDown("Fire2"))
         {
-            playerRig.rigController.SetBool("Aim", true);
+            _playerRig.rigController.SetBool(Aim, true);
             isAim = true;
             crossHair.SetActive(false);
         }
@@ -148,7 +150,7 @@ public class KeyBoardController : MonoBehaviour
         {
             if (Input.GetButtonUp("Fire2"))
             {
-                playerRig.rigController.SetBool("Aim", false);
+                _playerRig.rigController.SetBool(Aim, false);
                 isAim = false;
                 crossHair.SetActive(true);
             }
@@ -172,15 +174,15 @@ public class KeyBoardController : MonoBehaviour
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, attackRadius); 
 
-        foreach (Collider collider in colliders)
+        foreach (Collider col in colliders)
         {
-            if (collider.gameObject.tag == "Enemy")
+            if (col.gameObject.tag == "Enemy")
             { 
-                Rigidbody enemyRigidbody = collider.gameObject.GetComponent<Rigidbody>(); 
+                Rigidbody enemyRigidbody = col.gameObject.GetComponent<Rigidbody>(); 
 
                 if (enemyRigidbody != null)
                 {
-                    Vector3 pushDirection = (collider.transform.position - this.transform.position).normalized;
+                    Vector3 pushDirection = (col.transform.position - this.transform.position).normalized;
 
                     enemyRigidbody.AddForce(pushDirection * attackForce, ForceMode.Impulse);
                     Enemy enemy = enemyRigidbody.transform.GetComponent<Enemy>();
@@ -193,7 +195,7 @@ public class KeyBoardController : MonoBehaviour
 
     private void Shoot()
     {
-        if (Time.time > nextFire)
+        if (Time.time > _nextFire)
         {
             if (isShoot)
             {
@@ -202,21 +204,21 @@ public class KeyBoardController : MonoBehaviour
                 particleKey.Play();
                 if (keysCount > 0)
                 {
-                    keys[keysCount - 1].gameObject.SetActive(false);
+                    _keys[keysCount - 1].gameObject.SetActive(false);
                     keysCount--;
                     currentAmmo--;
                 }
                 muzzleFlash.Play();
                 StartCoroutine(KeyLight(0.2f));
-                recoilCam.Recoil();
+                _recoilCam.Recoil();
                 ShootRay();
 
-                if (shootRay && !isAim)
+                if (_shootRay && !isAim)
                 {
-                    playerRig.rigController.Play("shoot");
+                    _playerRig.rigController.Play("shoot");
                   
                 }
-                if (isPower)
+                if (IsPower)
                 {
                     rateOffire = 0.01f;
                 }
@@ -224,30 +226,30 @@ public class KeyBoardController : MonoBehaviour
                 {
                     rateOffire = 0.1f;
                 }
-                nextFire = 0;
-                nextFire = Time.time + rateOffire;
+                _nextFire = 0;
+                _nextFire = Time.time + rateOffire;
             }
         }
     }
 
     private void ShootRay()
     {
-        ray = Camera.main.ScreenPointToRay(mousePosition);
-        mousePosition = Input.mousePosition;
-        if (Physics.Raycast(ray, out raycastHit))
+        _ray = Camera.main.ScreenPointToRay(_mousePosition);
+        _mousePosition = Input.mousePosition;
+        if (Physics.Raycast(_ray, out _raycastHit))
         {
-            bulletClone = Instantiate(bulletPrefab, TrailBulletPos.transform.position, TrailBulletPos.transform.rotation);
+            _bulletClone = Instantiate(bulletPrefab, trailBulletPos.transform.position, trailBulletPos.transform.rotation);
 
-            Rigidbody rb = bulletClone.GetComponent<Rigidbody>();
-            rb.AddForce(ShootPoint.forward * shootForce, ForceMode.Impulse);
+            Rigidbody rb = _bulletClone.GetComponent<Rigidbody>();
+            rb.AddForce(shootPoint.forward * shootForce, ForceMode.Impulse);
 
-            shootRay = true;
-            if (raycastHit.transform.CompareTag("Head"))
+            _shootRay = true;
+            if (_raycastHit.transform.CompareTag("Head"))
             {
                 damage = 100f;
-                Enemy enemy = raycastHit.collider.GetComponentInParent<Enemy>();
+                Enemy enemy = _raycastHit.collider.GetComponentInParent<Enemy>();
                 enemy.TakeDamage(damage);
-                bloodClone = Instantiate(bloodEffect, raycastHit.point, transform.rotation);
+                _bloodClone = Instantiate(bloodEffect, _raycastHit.point, transform.rotation);
                 if (enemy.health <= 0)
                 {
                     #region RagdollForce
@@ -261,16 +263,16 @@ public class KeyBoardController : MonoBehaviour
                     Vector3 force = forceMagnitude * forceDirection;
                     #endregion
 
-                    enemy.TriggerRagdoll(force, raycastHit.point);
+                    enemy.TriggerRagdoll(force, _raycastHit.point);
                 }
-                Destroy(bulletClone, 0.1f);
+                Destroy(_bulletClone, 0.1f);
             }
-            if (raycastHit.transform.CompareTag("TopBody"))
+            if (_raycastHit.transform.CompareTag("TopBody"))
             {
                 damage = 50f;
-                Enemy enemy = raycastHit.collider.GetComponentInParent<Enemy>();
+                Enemy enemy = _raycastHit.collider.GetComponentInParent<Enemy>();
                 enemy.TakeDamage(damage);
-                bloodClone = Instantiate(bloodEffect, raycastHit.point, transform.rotation);
+                _bloodClone = Instantiate(bloodEffect, _raycastHit.point, transform.rotation);
                 if (enemy.health <= 0)
                 {
                     #region RagdollForce
@@ -284,16 +286,16 @@ public class KeyBoardController : MonoBehaviour
                     Vector3 force = forceMagnitude * forceDirection;
                     #endregion
 
-                    enemy.TriggerRagdoll(force, raycastHit.point);
+                    enemy.TriggerRagdoll(force, _raycastHit.point);
                 }
-                Destroy(bulletClone, 0.1f);
+                Destroy(_bulletClone, 0.1f);
             }
-            if (raycastHit.transform.CompareTag("LowBody"))
+            if (_raycastHit.transform.CompareTag("LowBody"))
             {
                 damage = 25f;
-                Enemy enemy = raycastHit.collider.GetComponentInParent<Enemy>();
+                Enemy enemy = _raycastHit.collider.GetComponentInParent<Enemy>();
                 enemy.TakeDamage(damage);
-                bloodClone = Instantiate(bloodEffect, raycastHit.point, transform.rotation);
+                _bloodClone = Instantiate(bloodEffect, _raycastHit.point, transform.rotation);
                 if (enemy.health <= 0)
                 {
                     #region RagdollForce
@@ -307,15 +309,15 @@ public class KeyBoardController : MonoBehaviour
                     Vector3 force = forceMagnitude * forceDirection;
                     #endregion
 
-                    enemy.TriggerRagdoll(force, raycastHit.point);
+                    enemy.TriggerRagdoll(force, _raycastHit.point);
                 }
-                Destroy(bulletClone, 0.1f);
+                Destroy(_bulletClone, 0.1f);
             }
             else 
             {
-                Destroy(bulletClone, 2f);
+                Destroy(_bulletClone, 2f);
             }
-            Destroy(bloodClone, 2f);
+            Destroy(_bloodClone, 2f);
         }
     }
 
@@ -331,7 +333,7 @@ public class KeyBoardController : MonoBehaviour
             {
                 crossHair.SetActive(true);
             }
-            playerRig.rigController.Play("Reload");
+            _playerRig.rigController.Play("Reload");
 
             if (carriedAmmo <= 0) return;
 
@@ -372,11 +374,11 @@ public class KeyBoardController : MonoBehaviour
 
     private void DryFire()
     {
-        if (Time.time > nextFire)
+        if (Time.time > _nextFire)
         {
             isShoot = false;
-            nextFire = 0;
-            nextFire = Time.time + rateOffire;
+            _nextFire = 0;
+            _nextFire = Time.time + rateOffire;
         }
     }
 
@@ -395,7 +397,7 @@ public class KeyBoardController : MonoBehaviour
 
     private void CrossHairColor()
     {
-        if (raycastHit.transform.CompareTag("Enemy"))
+        if (_raycastHit.transform.CompareTag("Enemy"))
         {
             for (int i = 0; i < colorCrosshair.Length; i++)
             {
@@ -420,39 +422,33 @@ public class KeyBoardController : MonoBehaviour
 
         for (int i = 0; i < parent.childCount; i++)
         {
-            keys[i] = parent.GetChild(i);
-            keys[i].gameObject.SetActive(true);
+            _keys[i] = parent.GetChild(i);
+            _keys[i].gameObject.SetActive(true);
         }
 
     }
 
     IEnumerator KeyLight(float time)
     {
-        currentEmission = escMat.GetColor("_EmissionColor");
-        newEmissionIntensity = currentEmission.maxColorComponent + 20f;
-        Color newEmissionColor = currentEmission * (newEmissionIntensity / currentEmission.maxColorComponent);
+        _currentEmission = escMat.GetColor("_EmissionColor");
+        _newEmissionIntensity = _currentEmission.maxColorComponent + 20f;
+        Color newEmissionColor = _currentEmission * (_newEmissionIntensity / _currentEmission.maxColorComponent);
         escMat.SetColor("_EmissionColor", newEmissionColor);
 
         yield return new WaitForSeconds(time);
-        currentEmission = escMat.GetColor("_EmissionColor");
-        newEmissionIntensity = currentEmission.maxColorComponent - 20f;
-        newEmissionColor = currentEmission * (newEmissionIntensity / currentEmission.maxColorComponent);
+        _currentEmission = escMat.GetColor("_EmissionColor");
+        _newEmissionIntensity = _currentEmission.maxColorComponent - 20f;
+        newEmissionColor = _currentEmission * (_newEmissionIntensity / _currentEmission.maxColorComponent);
         escMat.SetColor("_EmissionColor", newEmissionColor);
 
     }
 
     IEnumerator Blink(float time)
     {
-
         rMat.SetColor("_EmissionColor", onColor);
 
         yield return new WaitForSeconds(time);
 
         rMat.SetColor("_EmissionColor", offColor);
-    
-
-
-
     }
-
 }
